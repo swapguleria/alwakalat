@@ -53,6 +53,7 @@ img {
 .header-top ul {
     display: inline-block;
 }
+.launguage img{margin-left:15px;}
 .launguage {
     line-height: 30px;
     color: #fff;
@@ -1348,7 +1349,7 @@ iframe {
 }
 #sync2 .synced .item {
     background: #312783;
-}
+}/*
 #demo-promotion .owl-prev {
     background: rgba(0, 0, 0, 0) url("../images/promotion-slider-left-arrow.png");
     background-repeat: no-repeat bottom -85px;
@@ -1364,7 +1365,7 @@ iframe {
     left: auto;
     right: -33px;
     top: auto;
-}
+}*/
 #demo-promotion .item span {
     color: rgb(255, 0, 0);
     left: auto;
@@ -2791,9 +2792,9 @@ table#example-datatable.dataTable.no-footer {
 .series-slider #demo .item img{
     width:80%;
 }
-#demo-promotion .owl-buttons{
+/*#demo-promotion .owl-buttons{
     display:none;
-}
+}*/
 #demo-promotion #sync2{
     background:none;
 }
@@ -2945,7 +2946,6 @@ table#example-datatable.dataTable.no-footer {
     background-position:3% 52%;
     text-align:right;
     direction:rtl;
-    text-indent:15px;
 }
 .offer-form-main #guide .guide-form{
     float:left;
@@ -2964,6 +2964,7 @@ table#example-datatable.dataTable.no-footer {
     overflow:hidden;
     clear:both;
 }
+#approved_cars .inner-container > h2 {margin-bottom:30px;text-transform:uppercase;}
 .searches .search-products .search-main-product{
     border:0;
     float:left;
@@ -3638,9 +3639,14 @@ table#example-datatable.dataTable.no-footer {
     height: auto !important;
     width: auto !important;
 }
-#demo-promotion #sync1{
-    position:relative;
-}
+#demo-promotion #sync1{position:relative;}
+#sync1 .owl-buttons{top:50%; width:100%; margin:0 auto; left:inherit;}
+#sync1 .owl-prev, #sync1 .owl-next{height:36px;}  
+#sync1 .owl-prev {background:url("../images/promotion-slider-left-arrow.png");background-repeat:no-repeat;left:-25px;}
+#sync1 .owl-next {background:url("../images/promotion-slider-right-arrow.png");background-repeat:no-repeat;right:-25px;}
+#sync1 .sync1{height:480px;overflow:hidden;width:100%;}
+#sync1 .sync1 img{height: 100%;margin: 0 auto;width: auto;}
+/*
 #demo-promotion .owl-controls .owl-buttons {
     display: block !important;
     margin: 20px auto 0;
@@ -3697,23 +3703,21 @@ table#example-datatable.dataTable.no-footer {
     bottom:0;
     background-position: -36px 0px;
 }
-#demo-promotion .owl-controls{
-    position:absolute;
-    top:86%;
-    left: 50%;
-    margin-left: -55px;
-}
+*/
 
 /*			Car Search Page Starts Here		*/
-#car_search{	}#car_search .car_search_header{ padding:24px 0; background:#f5f5f5;}#car_search .car_search_header h3{font-size:26px; color:#312783; text-transform:uppercase;}
+
+#car_search .carsearch_new .form-group {margin: 0;}
+#car_search{padding-top:40px;}#car_search .car_search_header{ padding:24px 0; background:#f5f5f5;}#car_search .car_search_header h3{font-size:26px; color:#312783; text-transform:uppercase;}
 #car_search .form-group {
     display: inline-block;
     padding: 5px;
     width: 40%;
 }
 #car_search label, #car_search select{	display:inline-block;	font-size:11px;	font-family: 'ralewaymedium';	color:#070707;}#car_search label{text-transform:uppercase; letter-spacing:00.2em;}
-#car_search select{border-radius: 5px; width:60%; -moz-appearance:none; border:none; box-shadow:none; background:rgba(222, 222, 222, 1)url(../images/select_after.png)no-repeat 90% 50%; border-radius:5px; padding:5px; font-size:15px;}
-#car_model{padding:40px 0 0;}.car_model{	padding:0;}.car_model_inner {    float: left;    margin:0 15px 32px 0;    padding: 0;    width: 31.5%;	border:1px solid #c1c1c1;	}.car_model_content{background:#f3f3f3;}.car_model_img { overflow: hidden; position: relative; width: 100%;}.car_model_hover {    height: 100%;    left: 0;    padding: 10%;    position: absolute;    top: 0;    width: 100%;	transform:scale(0);}.car_model_hover_inner{background:rgba(255, 255, 255, 0.4); width:100%; height:100%;}.car_model_hover_inner > button {    background: rgba(49, 39, 131, 0.8) none repeat scroll 0 0;    border: medium none;    border-radius: 0;    color: #fff;    text-transform: uppercase;	margin-top:37%;	padding:14px;	}.car_model_hover_inner > button:hover{background: rgba(49, 39, 131, 1); color:#fff;}.car_model_content:hover .car_model_hover{transform:scale(1); transition:all 0.5s linear 0s;}.car_model_content:hover  h3{color:#312783;}.car_model_content:hover .car_text_2 p{color:#312783;}.car_model_img > img{max-width:100%;}.car_text{padding:15px 12px;}.car_model_content h3{font-size:18px; color:#000; font-family: 'ralewayextrabold'; padding-bottom:15px; border-bottom:2px solid #c1c1c1;}.car_model_content h4{font-size:15px; color:#5e5e5e; font-family: 'ralewayextrabold'; margin:12px 0;}.car_text_2 p, .car_text_2 span{display:inline-block; font-size:13px; color:#5e5e5e; font-family: 'ralewaymedium'; margin:6px 0;}.car_text_2 span{font-size:14px; clear:both;}.col-sm-3.add{padding:0;}.add-inner > img {border: 1px solid #c1c1c1; margin: 0 0 34px; max-width: 100%;}#buttons{background:#312783; padding:10px 0; color:#fff; }#buttons p{display:inline-block; margin:0;}#buttons .fa {    background: linear-gradient(#fff 50%, #e1e1e1 50%);    box-shadow: -1px 0px 4px #000;    color: #312783;    margin: 0 10px;    padding: 7px;	border-radius:2px;	box-shadow{-1px 0px 0px #fff inset;}}#buttons .fa:hover{color:#006db3;}/*			Car Search Page End		*/
+#car_search select{width:49%; -moz-appearance:none; border:none; box-shadow:none; background:url(../images/select_after.png)no-repeat 90% 50%;font-size:15px;}
+#car_search .carsearch_new select {background: rgba(222, 222, 222, 1) url("../images/select_after.png") no-repeat scroll 90% 50%;padding: 5px;width: 60%;border-radius:5px;}
+#car_model{padding:40px 0 0;}.car_model{	padding:0;}.car_model_inner {    float: left;    margin:0 15px 32px 0;    padding: 0;    width: 31.5%;	border:1px solid #c1c1c1;	}.car_model_content{background:#f3f3f3;}.car_model_img { overflow: hidden; position: relative; width: 100%;}.car_model_hover {    height: 100%;    left: 0;    padding: 10%;    position: absolute;    top: 0;    width: 100%;	transform:scale(0);}.car_model_hover_inner{background:rgba(255, 255, 255, 0.4); width:100%; height:100%;}.car_model_hover_inner > button {    background: rgba(49, 39, 131, 0.8) none repeat scroll 0 0;    border: medium none;    border-radius: 0;    color: #fff;    text-transform: uppercase;	margin-top:37%;	padding:14px;	}.car_model_hover_inner > button:hover{background: rgba(49, 39, 131, 1); color:#fff;}.car_model_content:hover .car_model_hover{transform:scale(1); transition:all 0.5s linear 0s;}.car_model_content:hover  h3{color:#312783;}.car_model_content:hover .car_text_2 p{color:#312783;}.car_model_img > img{max-width:100%;}.car_text{padding:15px 12px;}.car_model_content h3{font-size:18px; color:#000; font-family: 'ralewayextrabold'; padding-bottom:15px; border-bottom:2px solid #c1c1c1;}.car_model_content h4{font-size:16px; color:#000; font-weight:800; font-family: 'ralewayextrabold'; margin:12px 0;}.car_text_2 p, .car_text_2 span{display:inline-block; font-size:13px; color:#5e5e5e; font-family: 'ralewaymedium'; margin:6px 0;}.car_text_2 span{font-size:14px; clear:both;}.col-sm-3.add{padding:0;}.add-inner > img {border: 1px solid #c1c1c1; margin: 0 0 34px; max-width: 100%;}#buttons{background:#312783; padding:10px 0; color:#fff; }#buttons p{display:inline-block; margin:0;}#buttons .fa {    background: linear-gradient(#fff 50%, #e1e1e1 50%);    box-shadow: -1px 0px 4px #000;    color: #312783;    margin: 0 10px;    padding: 7px;	border-radius:2px;	box-shadow{-1px 0px 0px #fff inset;}}#buttons .fa:hover{color:#006db3;}/*			Car Search Page End		*/
 
 .more_list_item > a {
     background: #312783 none repeat scroll 0 0;
@@ -3744,7 +3748,7 @@ table#example-datatable.dataTable.no-footer {
     margin:0 auto;
 }
 #find_car .find_car .form-group {
-    border:1px solid #e5e5e5;
+   
     margin:15px 0 0 0.5%;
     width: 100%;
     float:left;
@@ -3759,7 +3763,7 @@ table#example-datatable.dataTable.no-footer {
     text-align: left;
     text-transform: capitalize;
     vertical-align: middle;
-    width: 40%;
+    width: 49%;
 }
 #find_car .find_car select{
     margin:0;
@@ -3767,7 +3771,9 @@ table#example-datatable.dataTable.no-footer {
     vertical-align:middle;
     font-family: "Raleway",sans-serif;
     font-size: 14px;
-    padding:2px 10px;
+    padding:6px 10px;
+	-webkit-appearance:none;
+	border:1px solid #e5e5e5;	
 }
 #find_car .find_car option{padding:2px 10px;}
 #find_car .find_car_submit{width:100%;}
@@ -3817,6 +3823,7 @@ table#example-datatable.dataTable.no-footer {
 
 /*paji di css*/
 
+#process{padding-top:40px;}
 .process_head h2{
     font-size:26px;
     letter-spacing:-000.05em;
@@ -3831,8 +3838,8 @@ table#example-datatable.dataTable.no-footer {
 
 }
 .process_inner{
-    background:#eee;
-    padding:44px 0;	
+    border:2px solid #eee;
+	box-shadow:0 1px 3px #000;	
 }
 .process_inner h3{
     color:#312783;
@@ -3896,7 +3903,8 @@ table#example-datatable.dataTable.no-footer {
 }
 
 #budget_label .label-modal{width:100%; margin-top:15px;}			
-#budget_label .label-modal select{width:100%; height:35px;}			
+#budget_label .label-modal select{width:100%;height:35px;padding:6px 10px;direction:rtl;}
+#feedback option,#budget_label .label-modal select option{padding:6px 10px;}			
 .btn_srch{
     background:#cb4e35;
     height:48px;
@@ -3934,6 +3942,7 @@ table#example-datatable.dataTable.no-footer {
     /*float:right;*/
     width:100%;
     height:35px;
+	direction:rtl;
 }
 .process_find_cars #find_car .find_car_submit input{
     margin:0;
@@ -3959,7 +3968,7 @@ table#example-datatable.dataTable.no-footer {
 }
 
 #body_type{
-    padding:56px 0;
+    padding:30px 0;
 }	
 .body_type_head{
     padding:0 0 34px 0;
@@ -3992,9 +4001,9 @@ table#example-datatable.dataTable.no-footer {
     border-radius:4px;
     border:none;
     background:#312783;
-    width:30%;
+    width:100%;
+	max-width:300px;
     text-transform:uppercase;
-    margin-top:60px;
 }
 
 .approved_head img{
@@ -4094,18 +4103,22 @@ table#example-datatable.dataTable.no-footer {
 .wish_list {
     padding: 15px 0 15px;
     background:#f2f2f2;
+	margin-bottom:15px;
 }
 .wish_header{
     padding:20px 0;
+}.wish_header h2 {
+
+    color: #312783;
+
+    font-size: 26px;
+
 }
 #wish_list .alert.alert-danger {
-    background: transparent none repeat scroll 0 0;
-    border: medium none;
+    background: transparent;
+    border: none;
 }
-.wish_header h2 {
-    color: #312783;
-    font-size: 26px;
-}
+
 .wish_header_inner{
     background:#312783;
     padding:10px 15px;
@@ -4159,7 +4172,7 @@ table#example-datatable.dataTable.no-footer {
 
 
 /*			Car Details Page Starts Here		*/
-
+#result {padding-top: 50px;}
 #result .result_header{padding-bottom:40px;}
 #result .result_header h3{font-size:26px; color:#312783; text-transform:uppercase;}
 .result_main{width:70%; float:left; padding:0 5px; height:585px; overflow:hidden;}
@@ -4268,6 +4281,10 @@ table#example-datatable.dataTable.no-footer {
 
 /*			Car Details Page Ends Here		*/
 
+#app_adv_search_maker-error, #app_adv_search_model-error, #app_adv_search_makers-error, #app_adv_search_models-error{
+	display:none!important;
+}
+.error{color:red!important;}
 
 
 @media (min-width:992px) and (max-width:1199px) {

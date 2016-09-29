@@ -832,3 +832,12 @@
 [23-Sep-2016 16:44:53 America/New_York] PHP Warning:  Invalid argument supplied for foreach() in /home/spldqsxl/public_html/arabic/get_model.php on line 8
 [24-Sep-2016 07:08:01 America/New_York] PHP Warning:  Invalid argument supplied for foreach() in /home/spldqsxl/public_html/arabic/get_model.php on line 8
 [24-Sep-2016 08:41:08 America/New_York] PHP Warning:  number_format() expects parameter 1 to be double, string given in /home/spldqsxl/public_html/arabic/search_result.php on line 26
+[27-Sep-2016 01:24:53 America/New_York] PHP Warning:  Invalid argument supplied for foreach() in /home/spldqsxl/public_html/arabic/car-brands.php on line 296
+[28-Sep-2016 17:32:53 America/New_York] PHP Warning:  Invalid argument supplied for foreach() in /home/spldqsxl/public_html/arabic/approvedCar.php on line 58
+[29-Sep-2016 04:17:26 America/New_York] PHP Parse error:  syntax error, unexpected end of file in /home/spldqsxl/public_html/arabic/get.php on line 1
+[29-Sep-2016 04:25:01 America/New_York] PHP Parse error:  syntax error, unexpected end of file in /home/spldqsxl/public_html/arabic/get.php on line 1
+[29-Sep-2016 04:25:02 America/New_York] PHP Parse error:  syntax error, unexpected end of file in /home/spldqsxl/public_html/arabic/get.php on line 1
+[29-Sep-2016 04:25:03 America/New_York] PHP Parse error:  syntax error, unexpected end of file in /home/spldqsxl/public_html/arabic/get.php on line 1
+[29-Sep-2016 04:25:03 America/New_York] PHP Parse error:  syntax error, unexpected end of file in /home/spldqsxl/public_html/arabic/get.php on line 1
+[29-Sep-2016 05:46:50 America/New_York] PHP Warning:  Invalid argument supplied for foreach() in /home/spldqsxl/public_html/arabic/approvedCars.php on line 306
+[29-Sep-2016 05:46:58 America/New_York] PHP Warning:  Invalid argument supplied for foreach() in /home/spldqsxl/public_html/arabic/approvedCars.php on line 306

@@ -292,7 +292,7 @@
 //                --------------------------------------Approved cars normal search End ---------------
 
 //                --------------------------------------Approved cars Advance search Start---------------
-                $("#app_adv_search_maker").change(function ()
+                $("#app_adv_search_maker, #app_adv_search_makers").change(function ()
                 {
                     var id = $(this).val();
                     var dataString = 'id=' + id + '&action=app_adv_search_model';
@@ -305,7 +305,7 @@
                                 cache: false,
                                 success: function (html)
                                 {
-                                    $("#app_adv_search_model").html(html);
+                                    $("#app_adv_search_model, #app_adv_search_models").html(html);
                                 }
                             });
 
