@@ -1,6 +1,7 @@
 <?php
 include("includes/header.php");
 $testimonials = $get->get_all_data('tbl_testimonial', 'id', 'desc');
+$advertisement = $get->get_all_data('tbl_advertisement', 'id', 'desc');
 $makers = $get->get_all_data('tbl_maker', 'id', 'asc');
 //$bodyType = $get->get_all_data('tbl_body_type', 'id', 'asc');
 $approved_cars = $get->get_all_approved_card();
@@ -246,31 +247,32 @@ $bodys = $get->get_all_data('tbl_body_type', 'id', 'asc');
             </div>
             <div class="row">
                 <div class="body_type">
-                    <div class="col-sm-4 body_type_left">
-                        <div class="body_type_right_inner text-center">
-                            <div class="advertisement text-center">
-                               
-                                <!--<img src="http://alwakalat.com/timthumb/timthumb.php?w=200&h=300&src=http://alwakalat.com/images/kia1.PNG" >-->
-                                <img src="<?php echo $main_url; ?>/images/kia1.PNG"/>
-                            </div>    
+
+                    <?php
+                    foreach ($advertisement as $key => $value)
+                        {
+                        ?>
+                        <div class="col-sm-4 body_type_left">
+                            <div class="body_type_right_inner text-center">
+                                <div class="advertisement text-center">
+                                    <?php
+                                    if ($value['image'])
+                                        {
+                                        ?><img src="<?php echo $main_url; ?>/approvedCars/wdir/uploads/<?php echo $value['image']; ?>"/> <?php
+                                        }
+                                    else
+                                        {
+                                        ?><img src="<?php echo $main_url; ?>/approvedCars/themes/basic/images/user.jpg"/>
+
+
+                                    <?php } ?>
+                                </div>    
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-4 body_type_right">
-                        <div class="body_type_right_inner text-center">
-                            <div class="advertisement text-center">
-                              <!--<img src="http://alwakalat.com/timthumb/timthumb.php?w=200&h=300&src=http://alwakalat.com/images/kia2.PNG" >-->  
-                              <img src="<?php echo $main_url; ?>/images/kia2.PNG"/>
-                            </div>    
-                        </div>
-                    </div>
-                    <div class="col-sm-4 body_type_right">
-                        <div class="body_type_right_inner text-center">
-                            <div class="advertisement text-center">
-                           <!--<img src="http://alwakalat.com/timthumb/timthumb.php?w=200&h=300&src=http://alwakalat.com/images/kia3.PNG" >-->
-                           <img src="<?php echo $main_url; ?>/images/kia3.PNG"/>
-                            </div>    
-                        </div>
-                    </div>
+
+                    <?php } ?>
+
+
                 </div>
             </div>
 

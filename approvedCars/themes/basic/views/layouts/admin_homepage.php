@@ -167,6 +167,10 @@
                                 <a href="<?php echo Yii::app()->createURL('testimonial/admin') ?>" >
                                     <i class="fa fa-user"></i><span> Testimonials</span></a>
                             </li>
+                            <li class="<?php echo ($this->id == 'advertisement' and $this->action->id == 'admin') ? 'active' : '' ?>">
+                                <a href="<?php echo Yii::app()->createURL('advertisement/admin') ?>" >
+                                    <i class="fa fa-user"></i><span> Advertisement</span></a>
+                            </li>
                             <?php
                             }
                         else
