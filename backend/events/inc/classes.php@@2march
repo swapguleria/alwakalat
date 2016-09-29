@@ -1,0 +1,269 @@
+<?php
+class model{
+
+	function escape_string($value)
+	{
+		return trim(mysql_real_escape_String(stripslashes($value)));
+	}
+	
+	
+	function Executequery($query)
+	{
+		$result	=	mysql_query($query) or die(mysql_error());
+		return $result;
+	}
+		
+	function locate($url)
+	{
+		header('location:'.$url.'');
+		exit;
+	}
+	
+	function logout()
+	{
+			unset($_SESSION['admin']);
+			$this->locate('login.php');
+	}
+	
+	function get_all_data($table,$field,$sorting)
+	{
+		$select	=	"select * from ".Suffix."$table order by $field $sorting ";
+		$query	=	$this->Executequery($select);
+		$rows	=	mysql_num_rows($query);
+		if($rows>0)
+		{
+			while($results	=	mysql_fetch_Assoc($query))
+			{
+				$abc[]	=	$results;
+			}
+			return $abc;
+		}
+	}
+	function get_select_class_data($table,$sorting,$fieldvalue)
+	{
+		$select	=	"select * from ".Suffix."$table WHERE `class_agefrom` >= '".$fieldvalue."' and `class_ageto` <= '".$fieldvalue."' order by class_id $sorting ";
+		$query	=	$this->Executequery($select);
+		$rows	=	mysql_num_rows($query);
+		if($rows>0)
+		{
+			while($results	=	mysql_fetch_Assoc($query))
+			{
+				$abc[]	=	$results;
+			}
+			return $abc;
+		}
+	}
+	
+	function get_all_data_active($table,$field,$sorting,$active,$value)
+	{
+		$select	=	"select * from ".Suffix."$table where $active='".$value."' order by $field $sorting ";
+		$query	=	$this->Executequery($select);
+		$rows	=	mysql_num_rows($query);
+		if($rows>0)
+		{
+			while($results	=	mysql_fetch_Assoc($query))
+			{
+				$abc[]	=	$results;
+			}
+			return $abc;
+		}
+	}
+	function get_all_data_active_home($table,$field,$sorting,$active,$value)
+	{
+		$select	=	"select * from ".Suffix."$table where $active='".$value."' AND `pages_slug`!='home' order by $field $sorting ";
+		$query	=	$this->Executequery($select);
+		$rows	=	mysql_num_rows($query);
+		if($rows>0)
+		{
+			while($results	=	mysql_fetch_Assoc($query))
+			{
+				$abc[]	=	$results;
+			}
+			return $abc;
+		}
+	}
+	
+	function get_single_field($table,$field,$fieldvalue,$id)
+	{
+		$select	=	"select $field from ".Suffix."$table where $fieldvalue='".$id."'";
+		$query	=	$this->Executequery($select);
+		$result	=	mysql_fetch_Assoc($query);
+		return $result[$field];
+	}
+	
+	function get_single_result($table,$field,$id)
+	{
+		$select	=	"select * from ".Suffix."$table where $field='".$id."'";
+		$query	=	$this->Executequery($select);
+		$result	=	mysql_fetch_Assoc($query);
+		return $result;
+	}
+	
+	
+	
+	function make_thumb($src, $dest, $desired_width,$type) {
+	/* read the source image */  
+	if($type=='jpg' || $type=='jpeg'){	$source_image = imagecreatefromjpeg($src);		}
+	else if($type=='png'){		$source_image = imagecreatefrompng($src);		}  $width = imagesx($source_image);  $height = imagesy($source_image);    /* find the "desired height" of this thumbnail, relative to the desired width  */  $desired_height = 188;    /* create a new, "virtual" image */  $virtual_image = imagecreatetruecolor($desired_width, $desired_height);    /* copy source image at a resized size */  imagecopyresampled($virtual_image, $source_image, 0, 0, 0, 0, $desired_width, $desired_height, $width, $height);    /* create the physical thumbnail image to its destination */  
+	if($type=='jpg' || $type=='jpeg'){	$source_image = imagejpeg($virtual_image, $dest);		}
+	else if
+	($type=='png'){		$source_image = imagepng($virtual_image, $dest);}
+	}
+	
+	function student_registration()
+	{
+		$register_findus	=	$this->escape_string($_POST['register_findus']);
+		$register_referral	=	$this->escape_string($_POST['register_referral']);
+		$register_family	=	$this->escape_string($_POST['register_family']);
+		$register_firstname	=	$this->escape_string($_POST['register_firstname']);
+		$register_lastname	=	$this->escape_string($_POST['register_lastname']);
+		$register_type		=	$this->escape_string($_POST['register_type']);
+		$register_phone		=	$this->escape_string($_POST['register_phone']);
+		$register_cell		=	$this->escape_string($_POST['register_cell']);
+		$register_work		=	$this->escape_string($_POST['register_work']);
+		$register_email		=	$this->escape_string($_POST['register_email']);
+		$register_employer	=	$this->escape_string($_POST['register_employer']);
+		$register_employer_phone	=	$this->escape_string($_POST['register_employer_phone']);
+		$register_employer_notes	=	$this->escape_string($_POST['register_employer_notes']);
+		$register_city		=	$this->escape_string($_POST['register_city']);
+		$register_state		=	$this->escape_string($_POST['register_state']);
+		$register_zip		=	$this->escape_string($_POST['register_zip']);
+		$register_contact	=	$this->escape_string($_POST['register_contact']);
+		$register_firstname2=	$this->escape_string($_POST['register_firstname2']);
+		$register_lastname2	=	$this->escape_string($_POST['register_lastname2']);
+		$register_type2		=	$this->escape_string($_POST['register_type2']);
+		$register_home2		=	$this->escape_string($_POST['register_home2']);
+		$register_cell2		=	$this->escape_string($_POST['register_cell2']);
+		$register_work2		=	$this->escape_string($_POST['register_work2']);
+		$register_email2	=	$this->escape_string($_POST['register_email2']);
+		$register_employer2	=	$this->escape_string($_POST['register_employer2']);
+		$register_phone2	=	$this->escape_string($_POST['register_phone2']);
+		$register_notes2	=	$this->escape_string($_POST['register_notes2']);
+		$register_address2	=	$this->escape_string($_POST['register_address2']);
+		$register_phone3	=	$this->escape_string($_POST['register_phone3']);
+		$register_health	=	$this->escape_string($_POST['register_health']);		
+		$register_full_name	=	$this->escape_string($_POST['register_full_name']);		
+		$register_comments	=	$this->escape_string($_POST['register_comments']);		
+		
+		$register_full_form	=	$this->escape_string($_POST['']);
+		
+		
+		$insert_personal	=	"INSERT INTO ".Suffix."register SET
+					`register_findus`='".$register_findus."',
+					`register_referral`='".$register_referral."',
+					`register_family`='".$register_family."',
+					`register_firstname`='".$register_firstname."',
+					`register_lastname`='".$register_lastname."',
+					`register_type`='".$register_type."',
+					`register_phone`='".$register_phone."',
+					`register_cell`='".$register_cell."',
+					`register_work`='".$register_work."',
+					`register_email`='".$register_email."',
+					`register_employer`='".$register_employer."',
+					`register_employer_phone`='".$register_employer_phone."',
+					`register_employer_notes`='".$register_employer_notes."',
+					`register_city`='".$register_city."',
+					`register_state`='".$register_state."',
+					`register_zip`='".$register_zip."',
+					`register_contact`='".$register_contact."',
+					`register_firstname2`='".$register_firstname2."',
+					`register_lastname2`='".$register_lastname2."',
+					`register_type2`='".$register_type2."',
+					`register_home2`='".$register_home2."',
+					`register_cell2`='".$register_cell2."',
+					`register_work2`='".$register_work2."',
+					`register_email2`='".$register_email2."',
+					`register_employer2`='".$register_employer2."',
+					`register_phone2`='".$register_phone2."',
+					`register_notes2`='".$register_notes2."',
+					`register_address2`='".$register_address2."',
+					`register_phone3`='".$register_phone3."',
+					`register_health`='".$register_health."',
+					`register_date`=now(),
+					`register_full_name`='".$register_full_name."',
+					`register_comments`='".$register_comments."',
+					`register_full_form`='".$register_full_form."'";
+	
+		$query_personal			=	mysql_query($insert_personal) or die(mysql_error());
+		$register_id	=	mysql_insert_id();	
+		for($i=1;$i<=5;$i++)
+		{
+		$student_firstname	=	$this->escape_string($_POST['student_firstname_'.$i.'']);
+		$student_lastname	=	$this->escape_string($_POST['student_lastname_'.$i.'']);
+		$student_gender	=	$this->escape_string($_POST['student_gender_'.$i.'']);
+		$student_birth	=	$this->escape_string($_POST['student_birth_'.$i.'']);
+		$student_email	=	$this->escape_string($_POST['student_email_'.$i.'']);
+		$student_school	=	$this->escape_string($_POST['student_school_'.$i.'']);
+		$student_grade	=	$this->escape_string($_POST['student_grade_'.$i.'']);
+		$student_disabilites	=	$this->escape_string($_POST['student_disabilites_'.$i.'']);
+		$student_allergies	=	$this->escape_string($_POST['student_allergies_'.$i.'']);
+		$student_medications	=	$this->escape_string($_POST['student_medications_'.$i.'']);
+		$student_primary	=	$this->escape_string($_POST['student_primary_'.$i.'']);
+		
+		$student_class_1	=	$this->escape_string($_POST['student_class_1_'.$i.'']);
+		$student_class_2	=	$this->escape_string($_POST['student_class_2_'.$i.'']);
+		$student_class_3	=	$this->escape_string($_POST['student_class_3_'.$i.'']);
+		$student_class_4	=	$this->escape_string($_POST['student_class_4_'.$i.'']);
+		$student_class_5	=	$this->escape_string($_POST['student_class_5_'.$i.'']);
+		$student_class_6	=	$this->escape_string($_POST['student_class_6_'.$i.'']);
+		$student_class_7	=	$this->escape_string($_POST['student_class_7_'.$i.'']);
+		$student_class_8	=	$this->escape_string($_POST['student_class_8_'.$i.'']);
+		$student_class_9	=	$this->escape_string($_POST['student_class_9_'.$i.'']);
+		$student_class_10	=	$this->escape_string($_POST['student_class_10_'.$i.'']);
+		$student_class_11	=	$this->escape_string($_POST['student_class_11_'.$i.'']);
+		$student_class_12	=	$this->escape_string($_POST['student_class_12_'.$i.'']);
+		$student_class_13	=	$this->escape_string($_POST['student_class_13_'.$i.'']);
+		$student_class_14	=	$this->escape_string($_POST['student_class_14_'.$i.'']);
+		$student_class_15	=	$this->escape_string($_POST['student_class_15_'.$i.'']);
+		if($student_firstname!=''||$student_birth!='')
+		{
+		$insert_student	=	"INSERT INTO ".Suffix."student SET
+					`student_firstname`='".$student_firstname."',
+					`student_lastname`='".$student_lastname."',
+					`student_gender`='".$student_gender."',
+					`student_birth`='".$student_birth."',
+					`student_email`='".$student_email."', 
+					`student_school`='".$student_school."',
+					`student_grade`='".$student_grade."',
+					`student_disabilites`='".$student_disabilites."',
+					`student_allergies`='".$student_allergies."',
+					`student_medications`='".$student_medications."',
+					`student_primary`='".$student_primary."',
+					`student_form`='".$i."',
+					`register_id`='".$register_id."'
+					";	
+		$query_student	=	mysql_query($insert_student) or die(mysql_error());	
+		$student_id		=	mysql_insert_id();
+		$insert_student_class	=	"INSERT INTO ".Suffix."student_class SET
+					`student_class_1`='".$student_class_1."',
+					`student_class_2`='".$student_class_2."',
+					`student_class_3`='".$student_class_3."',
+					`student_class_4`='".$student_class_4."',
+					`student_class_5`='".$student_class_5."',
+					`student_class_6`='".$student_class_6."',
+					`student_class_7`='".$student_class_7."',
+					`student_class_8`='".$student_class_8."',
+					`student_class_9`='".$student_class_9."',
+					`student_class_10`='".$student_class_10."',
+					`student_class_11`='".$student_class_11."',
+					`student_class_12`='".$student_class_12."',
+					`student_class_13`='".$student_class_13."',
+					`student_class_14`='".$student_class_14."',
+					`student_class_15`='".$student_class_15."',
+					`register_id`='".$register_id."',
+					`student_id`='".$student_id."'
+					";	
+		
+		$query_student_class	=	mysql_query($insert_student_class) or die(mysql_error());	
+		$student_class_id		=	mysql_insert_id();
+		}
+		}
+		if($query_personal)
+		{
+			$this->locate('thank-you');
+		}
+	}
+	
+}
+
+?>

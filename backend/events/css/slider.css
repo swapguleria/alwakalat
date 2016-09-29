@@ -1,0 +1,18 @@
+ /* Prevent the slideshow from flashing on load */
+    #slides {
+      display: none
+    }
+
+    /* Show active item in the pagination */
+    .slidesjs-pagination .active {
+      color:red;
+    }
+.slidesjs-navigation{ display:none;}
+.slidesjs-pagination{ width:100%; max-width:120px; margin:0px auto 0px;}
+.slidesjs-pagination li{ float:left; margin:0px 0px 0px 5px;}	
+.slidesjs-pagination li a{ background-image: url(../images/pagination-dot.png);background-position: 0 0; display: block; float: left; height: 18px; overflow: hidden; padding-top: 15px; width: 18px;}
+.slidesjs-pagination li a:hover, a:visited{ color:#000; background-position:0 -20px;}
+.slidesjs-pagination li a.active{ color:#000; background-position:0 -20px;}
+.owl-pagination{ display:none !important;}
+.owl-buttons{ position:absolute; bottom:-45px; right:34%;}
+	

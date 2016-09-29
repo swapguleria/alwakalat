@@ -14,7 +14,7 @@
 				<?php foreach($makers as $maker){?>
 				
 				<option value="<?php echo $maker['id'];?>"><?php echo $maker['name'];?></option>
-				<?}?>
+				<?php } ?>
 				</select>
 				<!--select name="model" id="model_sel">
 					<option selected="selected">Select Maker First</option>

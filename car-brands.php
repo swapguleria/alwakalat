@@ -293,7 +293,7 @@ if (isset($_POST['submit2']))
 <div class="series-main">
     <div class="container">
         <div class="row">
-            <div class=" col-lg-9 col-md-9 col-sm-9 slider-main brand_left">
+            <div class=" col-lg-9 col-md-9 col-sm-9 slider-main brand_left series-main-slider">
                 <div class="series-slider">
                     <div id="demo">
                         <div id="owl-demo-two" class="owl-carousel">

@@ -1,0 +1,1 @@
+[17-Feb-2016 03:08:01 America/Denver] PHP Warning:  mysql_connect(): Access denied for user 'mytestse_events'@'localhost' (using password: YES) in /home3/dextero3/public_html/development/alwakalat/backend/events/inc/database.php on line 11

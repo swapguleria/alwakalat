@@ -13,12 +13,14 @@ $slider = $get->get_all_data('promotion_slider', 'slider_id', 'desc');
                         {
                         ?>
                         <div class="item">
-                            <img src="<?php
-                            if (isset($sli['full_path']))
-                                {
-                                echo $sli['full_path'];
-                                }
-                            ?>" alt="">
+							<div class="sync1">
+								<img src="<?php
+								if (isset($sli['full_path']))
+									{
+									echo $sli['full_path'];
+									}
+								?>" alt="">
+							</div>
                          <!-- <h1><img src="images/promotion-slider-two.jpg" alt=""> <span><img src="images/promotion-slider-car-icon.png" alt="">
                             <!--                <h3>SPECIAL<br>
                                               OFFER</h3>

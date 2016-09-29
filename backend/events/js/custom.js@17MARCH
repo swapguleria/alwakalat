@@ -1,0 +1,216 @@
+$(document).ready(function(){ 
+	$( ".student_birth" ).datepicker({"dateFormat": "yy-mm-dd"});
+	$( ".register_date" ).datepicker({"dateFormat": "yy-mm-dd"});
+	
+	/****************   Show hide student information ****************************/
+	
+	 $('.stdinfo1').css('display','none');
+	$('.stdinfo2').css('display','none');
+	$('.stdinfo3').css('display','none');
+	$('.stdinfo4').css('display','none');
+	$('.show_hide1').click(function(){
+		if($('.stdinfo1').css('display') == 'none')	{$('.stdinfo1').css('display','block'); }
+		else{$('.stdinfo1').css('display','none');}
+	});
+	$('.show_hide2').click(function(){
+		if($('.stdinfo2').css('display') == 'none')	{$('.stdinfo2').css('display','block'); }
+		else{$('.stdinfo2').css('display','none');}		
+	});
+	$('.show_hide3').click(function(){
+		if($('.stdinfo3').css('display') == 'none')	{$('.stdinfo3').css('display','block'); }
+		else{$('.stdinfo3').css('display','none');}		
+	});
+	$('.show_hide4').click(function(){
+		if($('.stdinfo4').css('display') == 'none')	{$('.stdinfo4').css('display','block'); }
+		else{$('.stdinfo4').css('display','none');}		
+	}); 
+	
+	
+	
+	/****************   Add more search ****************************/
+	/* 
+	$('.s1addmore').click(function() {
+		if($('.s11search').css('display') == 'none'){$('.s11search').css('display','block')}
+		else {$('.s12search').css('display','block')}
+	});
+	$('.s2addmore').click(function() {
+		if($('.s21search').css('display') == 'none'){$('.s21search').css('display','block')}
+		else {$('.s2search').css('display','block')}
+	});
+	$('.s3addmore').click(function() {
+		if($('.s31search').css('display') == 'none'){$('.s31search').css('display','block')}
+		else {$('.s32search').css('display','block')}
+	});
+	$('.s4addmore').click(function() {
+		if($('.s41search').css('display') == 'none'){$('.s41search').css('display','block')}
+		else {$('.s41search').css('display','block')}
+	});
+	$('.s5addmore').click(function() {
+		if($('.s51search').css('display') == 'none'){$('.s51search').css('display','block')}
+		else {$('.s52search').css('display','block')}
+	}); */
+	
+	
+	
+	/* $('.s1reset').click(function() {$(this).prev().prev().val('');	});
+	$('.s2reset').click(function() { $(this).prev().prev().val('');	});
+	$('.s3reset').click(function() { $(this).prev().prev().val('');	});
+	$('.s4reset').click(function() { $(this).prev().prev().val('');	});
+	$('.s5reset').click(function() { $(this).prev().prev().val('');	}); */
+	
+	
+	
+	
+});
+/****************  registration form valiudation ****************************/
+
+		// validate signup form on keyup and submit
+		    jQuery("#register_form").validate({
+			rules: {
+				student_firstname: "required",
+				student_parent_name: "required",
+				student_tshirt_size: "required",
+				student_age: "required",
+				register_phone:{
+					required: true,
+					digits: true
+					},
+				attend_month:{
+					digits: true,
+					min : 1,
+					max :12
+					},
+				student_parent_email: {email: true, required: true, remote: {url: "./inc/checkUnameEmail.php", type : "post"}},
+				register_city: "required",
+				register_state: "required",
+				register_zip: {
+						required: true,
+						digits: true
+						},
+				register_authorize_phone: {
+						required: true,
+						digits: true
+						},
+				register_address: "required",
+				student_birth: "required",
+				register_gaurdain: "required",
+				register_authorize: "required",
+				register_parents_signature: "required",
+				register_date: "required",
+				register_findus: "required"
+				
+			}
+		});   
+		 
+/****************  payment form valiudation ****************************/
+
+		// validate signup form on keyup and submit
+		  jQuery("#payment_form").validate({
+			rules: {
+				expy: "required",
+				expm: "required",
+				bfname: "required",
+				blname: "required",
+				ccnum:{
+					required: true,
+					digits: true
+					},				
+				cvv: "required",
+				zipcode: {
+						required: true,
+						digits: true
+						}				
+			}
+		});  
+		
+/****************  change password form valiudation ****************************/
+
+		// validate signup form on keyup and submit
+		  jQuery("#login_form").validate({
+			rules: {
+				username: "required",
+				password: "required"
+							
+			}
+		});  
+		
+/****************  Login form valiudation ****************************/
+
+		// validate signup form on keyup and submit
+		  jQuery("#change_password_form").validate({
+			rules: {
+				old_pass: {
+					required : true
+                },
+				new_pass: {
+                    minlength : 6,
+					required : true
+                },
+				retype_pass:  {
+                     equalTo : "#password",
+					required : true
+                }
+							
+			}
+		});  
+		
+/****************  Edit Address form valiudation ****************************/
+
+		// validate signup form on keyup and submit
+		  jQuery("#Edit_add").validate({
+			rules: {
+				register_address: "required",
+				register_phone:{
+					required: true,
+					digits: true
+					},
+				register_city: "required",
+				register_state: "required",
+				register_zip: "required"							
+			}
+		});  
+		
+
+/****************  search  student class ****************************/
+
+function select(aa) 
+{
+	var iname = $('.'+aa).attr('data-iname');	
+	var bdate = $('.'+aa).attr('data-bdate');	
+	var sfn = $('.'+aa).attr('data-sfn');	
+	var bd5= $('.'+bdate).datepicker('getDate');
+	var bd1= $('.'+bdate).val();
+	if($('.'+sfn).val() == ''){alert('please Enter student first name '); return false;}
+	if(bd1 == ''){alert('please Enter student  birthdate'); return false;}
+	var today = new Date();
+	var yyyy = today.getFullYear();
+	var yyyy1 = bd5.getFullYear();
+	var year=yyyy-yyyy1;
+	var url= "select_class.php?age="+year+"&field="+iname;
+	//alert(url);
+	/*  window.open(url,'Popup','width=900,height=500,toolbar=0,menubar=0,location=0,status=0,scrollbars=1,resizable=1,left=0,top=0'); */
+	$.ajax({
+		url : url,
+		method : 'POST',
+		success : function (msg)
+		{
+			$('.result1').html(msg);
+		}		
+	});
+	$("#popup").show();
+	$(".popup").show();
+	
+}
+
+
+function class_select(class_id,iname,class_name,day,time)
+{
+	$("#cross").trigger('click'); 
+	$('#'+iname).val(class_name+','+day+' /'+time );
+	$('#'+iname).attr("data-class-id",class_id);	
+	$('#'+iname).prev().val(class_id);	
+     
+	
+	
+}
+	

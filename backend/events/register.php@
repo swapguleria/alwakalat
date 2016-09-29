@@ -1,0 +1,440 @@
+<?php include 'inc/index_header.php';?>
+
+<div class="content about">
+  <div class="container">
+    <div class="row">
+	  <div class="col-md-12 col-sm-12 col-xs-12">
+	    <h1>registration form</h1>
+		<form>
+		<h4 class="underline">Family Information:</h4>
+		<br />
+		<div class="row"> 
+		  <div class="col-md-5 col-sm-5 col-xs-12">
+		    <div class="field1">
+		      <label>How did you hear about us?<span class="red">*</span></label>
+			  <select class="inputbox">
+			    <option>Door Hanger</option>
+			    <option>Kids Directory</option>
+			    <option>Newspaper Ad</option>
+			  </select>
+		    </div>
+			<div class="field1">
+		      <label>Family Name:</label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>Last Name:<span class="red">*</span></label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>Home Phone:</label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>Work #:</label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>Employer:</label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>Employer Notes:</label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>Last Name:<span class="red">*</span></label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>Home Phone:</label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>Work #:</label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>Employer:</label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>Employer Notes:</label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+			  <div class="short">
+			    <label>City:</label>
+			    <input type="text" name="a" class="inputbox" />
+			  </div>
+			  <div class="short">
+			    <label>State:<span class="red">*</span></label>
+			    <select class="inputbox">
+			      <option>Haryana</option>
+			      <option>Punjab</option>
+			      <option>Gujrat</option>
+			    </select>
+			  </div>
+			  <div class="short">
+			    <label>Zip:<span class="red">*</span></label>
+			    <input type="text" name="a" class="inputbox" />
+			  </div>
+		    </div>
+			<div class="field1">
+		      <label>Emergency Contact Info: <span class="red">*</span></label>
+			  <textarea rows="3" cols="5" class="inputbox"></textarea>
+		    </div>
+		  </div>
+		  
+		  <div class="col-md-5 col-sm-5 col-xs-12 col-sm-push-2">
+		    <div class="field1">
+		      <label>Referral Name: <span class="red">*</span></label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>Contact #1 First Name: <span class="red">*</span></label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>Type:<span class="red">*</span></label>
+			  <select class="inputbox">
+			    <option>Door Hanger</option>
+			    <option>Kids Directory</option>
+			    <option>Newspaper Ad</option>
+			  </select>
+		    </div>
+			<div class="field1">
+		      <label>Cell #: <span class="red">*</span></label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>Email: <span class="red">*</span></label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>Employer Phone: <span class="red">*</span></label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>Contact #2 First Name: <span class="red">*</span></label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>Type:<span class="red">*</span></label>
+			  <select class="inputbox">
+			    <option>Door Hanger</option>
+			    <option>Kids Directory</option>
+			    <option>Newspaper Ad</option>
+			  </select>
+		    </div>
+			<div class="field1">
+		      <label>Cell #: <span class="red">*</span></label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>Email: <span class="red">*</span></label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>Employer Phone: <span class="red">*</span></label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>Home Address: <span class="red">*</span></label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>Home Phone: <span class="red">*</span></label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>Health Insurance Carrier: <span class="red">*</span></label>
+			  <textarea rows="3" cols="5" class="inputbox"></textarea>
+		    </div>
+		  </div>
+		</div>
+
+		<div class="blank3"></div>
+        <h4 class="underline">Student #1 Information:</h4>
+        <br />
+        <div class="row">
+		  <div class="col-md-5 col-sm-5 col-xs-12">
+		    <div class="field1">
+		      <label>Student's First Name: <span class="red">*</span></label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>Student Gender:<span class="red">*</span></label>
+			  <select class="inputbox">
+			    <option>Door Hanger</option>
+			    <option>Kids Directory</option>
+			    <option>Newspaper Ad</option>
+			  </select>
+		    </div>
+			<div class="field1">
+		      <label>Student Email: <span class="red">*</span></label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>Grade Level:<span class="red">*</span></label>
+			  <select class="inputbox">
+			    <option>Door Hanger</option>
+			    <option>Kids Directory</option>
+			    <option>Newspaper Ad</option>
+			  </select>
+		    </div>
+			<div class="field1">
+		      <label>Allergies: <span class="red">*</span></label>
+			  <textarea rows="3" cols="5" class="inputbox"></textarea>
+		    </div>
+			<div class="field1">
+		      <label>Primary Doctor: <span class="red">*</span></label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label class="underline">Classes (max 15)</label>
+			  <div class="sclass">
+			    <label>Select Class #1:</label>
+				<input type="text" name="a" class="inputtext" />
+				<a href="#" class="btn btn-sm btn-default form_btn">Search</a>
+				<a href="#" class="btn btn-sm btn-default form_btn">Clear</a>
+			  </div>
+			  <div class="sclass">
+			    <label>Select Class #2:</label>
+				<input type="text" name="a" class="inputtext" />
+				<a href="#" class="btn btn-sm btn-default form_btn">Search</a>
+				<a href="#" class="btn btn-sm btn-default form_btn">Clear</a>
+			  </div>
+			  <div class="sclass">
+			    <label>Select Class #3:</label>
+				<input type="text" name="a" class="inputtext" />
+				<a href="#" class="btn btn-sm btn-default form_btn">Search</a>
+				<a href="#" class="btn btn-sm btn-default form_btn">Clear</a>
+			  </div>
+			  <div class="sclass">
+			    <label>Select Class #4:</label>
+				<input type="text" name="a" class="inputtext" />
+				<a href="#" class="btn btn-sm btn-default form_btn">Search</a>
+				<a href="#" class="btn btn-sm btn-default form_btn">Clear</a>
+			  </div>
+			  <div class="sclass">
+			    <label>Select Class #5:</label>
+				<input type="text" name="a" class="inputtext" />
+				<a href="#" class="btn btn-sm btn-default form_btn">Search</a>
+				<a href="#" class="btn btn-sm btn-default form_btn">Clear</a>
+			  </div>
+		    </div>
+			<div class="field1">
+			  <div class="sclass">
+				<a href="#" class="btn btn-sm btn-default form_btn pull-right">Add More Classes</a>
+			  </div>
+			</div>
+		  </div>
+		  
+		  <div class="col-md-5 col-sm-5 col-xs-12 col-sm-push-2">
+		    <div class="field1">
+		      <label>Last Name: <span class="red">*</span></label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>Birth Date: <span class="red">*</span></label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>School: <span class="red">*</span></label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>Disabilites: <span class="red">*</span></label>
+			  <textarea rows="3" cols="5" class="inputbox"></textarea>
+		    </div>
+			<div class="field1">
+		      <label>Medications: <span class="red">*</span></label>
+			  <textarea rows="3" cols="5" class="inputbox"></textarea>
+		    </div>
+		  </div>
+        </div>
+
+        <div class="blank3"></div>
+        <h4 class="underline">Student #2 Information:</h4>
+        <h4 class="underline">Student #3 Information:</h4>
+        <h4 class="underline">Student #4 Information:</h4>
+        <h4 class="underline">Student #5 Information:</h4>
+        <br />
+
+        <div class="row">
+		  <div class="col-md-12 col-sm-12 col-xs-12">
+		    <div class="blank3"></div>
+            <h5 class="underline margint"><strong>Registration</strong></h5>
+			<p class="margint">A non-refundable fee of $30 for one child, $50 for two children and $75 for three or more family members is required yearly at time of registration.</p>
+			<div class="check"><input type="checkbox" name="a" value="a" class="checkbox" />I've read the above and agree.</div>
+			<br />
+			<h5 class="underline margint"><strong>Payment of Fees & NSF Charges</strong></h5>
+			<p class="margint">Tuition must be paid by automatic bank debit/check or automatic credit card payment. Tuition will be debited from your bank account on the 1st or the 5th day of each month, September-May or charged to your credit card on the 1st or 5th day of each month, September-May. Tuition may also be paid in full per year with a 10% discount by debit card, credit card or check. STDC accepts Visa, Discover, MasterCard and American Express only. Monthly tuition, Recital Costume and Recital Fees will be automatically withdrawn from your account on the specified dates. STDC does not offer refunds for tuition paid monthly or year in full. By completing this online registration, you authorize the school to electronically debit your bank account for the amount of any NSF paper checks or declined auto-debit transaction plus a $20 NSF fee.</p>
+			<div class="check"><input type="checkbox" name="a" value="a" class="checkbox" />I've read the above and agree.</div>
+			<br />
+			<h5 class="underline margint"><strong>Monthly Tuition</strong></h5>
+			<p class="margint">August tuition is discounted 50% and is due upon registration. Regular tuition rates will apply from September through May at the Tulsa location & September through June at the Owasso location. Tuition rates and discounts are available to view on the tuition page of the website. By clicking the following box, you acknowledge that you have reviewed and understand the all rates and dicounts. YOU WILL NOT BE CHARGED AUTOMATICALLY UPON SUBMITTING THIS REGISTRATION: STDC will review your online registration to ensure all applicable discounts and fees have been appropriately applied prior to processing your payment. If you have supplied an email address, you will recieve an email notification any time your bank acount or credit card is charged with the date and amount of the transaction.</p>
+			<div class="check"><input type="checkbox" name="a" value="a" class="checkbox" />I've read the above and agree.</div>
+			<br />
+			<h5 class="underline margint"><strong>Costume & Recital Fees</strong></h5>
+			<p class="margint">The Costume Fee will be automatically withdrawn from your account on January 1st. No costume fees will be refunded after this date, even if the student withdraws from the school. The Recital Fee will be automatically withdrawn from your account on March 1st. No recital fees will be refunded after this date, even if the student withdraws from the school after March 1st. </p>
+			<div class="check"><input type="checkbox" name="a" value="a" class="checkbox" />I've read the above and agree.</div>
+			<br />
+			<h5 class="underline margint"><strong>Withdrawal & Refunds</strong></h5>
+			<p class="margint">There is a two month minimum for all classes. A twenty day notice from the first of the month is required to discontinue any classes. Withdrawal must be done in person and will not be accepted over the phone. Withdrawal must be done at the school office and not with an instructor. Withdrawal must occur within the first 10 days of the month. A withdrawal after the 10th of the month will be charged in full for the next month. No withdrawals will be accepted after April 1st. To withdraw from a class a parent or adult student must:</p>
+			<p>1. Inform school administration<br /> 
+			2. Complete and sign a withdrawal form provided by the school office.</p>
+			<p>All automatic bank debiting or credit card charges will stop after the month notice period. South Tulsa Dance Co. reserves the right to terminate lessons to any students without notice. In such a case a refund for unused classes will be given. </p>
+			<div class="check"><input type="checkbox" name="a" value="a" class="checkbox" />I've read the above and agree.</div>
+			<br />
+			<h5 class="underline margint"><strong>Extreme Weather or Class Interruption & Substitutions</strong></h5>
+			<p class="margint">If the school must cancel classes due to extreme weather conditions or events beyond our control such as a power outage, there will not be any refunds issued. If your class is cancelled more than two times due to the unexpected conditions, your missed class will be added to the end of the teaching season. South Tulsa Dance Co. will close due to extreme weather when Jenks or Union Public Schools close. If you are unsure of a closing, please call the school. South Tulsa Dance Co. reserves the right to provide a substitute instructor if the regularly scheduled instructor is ill or otherwise unable to teach classes.</p>
+			<div class="check"><input type="checkbox" name="a" value="a" class="checkbox" />I've read the above and agree.</div>
+			<br />
+			<h5 class="underline margint"><strong>Dance Class Attendance, Tardiness, & Dress Code</strong></h5>
+			<p class="margint">South Tulsa Dance Co. reserves the right to have students who repeatedly come to class late, sit out of class. Good attendance is imperative in having a productive class and entering class late is a disruption to the entire class and instructor. Competitive classes have a required attendance level to remain in competitive classes. Please see the Competitive Class information Sheet for required attendance. All required dance attire and shoes must be worn to all classes. Failure to wear the appropriate dancewear to class could result in students being asked to sit out of class. Students are not permitted to wear jeans or shoes worn on the street or outdoors to any dance class. For safety reasons, dancers are not allowed to wear jewelry and hair must be pulled back. Please see the STDC Required Clothing List for your specific class attire and shoe requirements. Dance shoes are not allowed to be worn outside of the dance room.</p>
+			<div class="check"><input type="checkbox" name="a" value="a" class="checkbox" />I've read the above and agree.</div>
+			<br />
+			<h5 class="underline margint"><strong>Parent's Responsibility for Dates and Events</strong></h5>
+			<p class="margint">It is the responsibility of the parent or adult student to be aware of all South Tulsa Dance Co. functions such as viewing days, recitals, performances and dates the school is open or closed. South Tulsa Dance Co. will post all notices on the Co. Connection Bulletin Board as well as sending home a newsletter in class during the months of September, November, January, March. The website will list all important information and you can receive a monthly e-mail by signing up for an e–newsletter. Periodically, memos will also be sent home. Please check the bulletin board for any updates and check your child's dance bag</p>
+			<div class="check"><input type="checkbox" name="a" value="a" class="checkbox" />I've read the above and agree.</div>
+			<br />
+			<h5 class="underline margint"><strong>Care of Students & Injuries</strong></h5>
+			<p class="margint">South Tulsa Dance Co. is not responsible for providing before or after care for students. Parents with children under the age of 6 must stay with the child until class begins and pick up the child inside the building when class is over. Students are not to be left at the school for excessive time before or after class. Parents, legal guardians of minor students or adult students hereby waive the right to any legal action to any injury sustained on school property resulting from normal dance activity or any other activity conducted before, during or after class time. </p>
+			<div class="check"><input type="checkbox" name="a" value="a" class="checkbox" />I've read the above and agree.</div>
+			<br />
+			<h5 class="underline margint"><strong>Calendar of Important Dates & Photo Release</strong></h5>
+			<p class="margint">The school calendar will provide closings, viewing days, etc. South Tulsa Dance Co. reserves the right to amend the calendar. Any changes to the calendar will be posted in the monthly newsletters. South Tulsa Dance Co. is hereby granted permission to take a photograph of the student to use for any advertising material including the website. Permission is also hereby granted for South Tulsa Dance Co. to copyright such photographs in its name. </p>
+			<div class="check"><input type="checkbox" name="a" value="a" class="checkbox" />I've read the above and agree.</div>
+			<br />
+		  </div>
+        </div>
+
+        <div class="row">
+		  <div class="col-md-5 col-sm-5 col-xs-12">
+		    <div class="field1">
+		      <label>Enter your Full Name: <span class="red">*</span></label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+		  </div>
+		  <div class="col-md-5 col-sm-5 col-xs-12 col-sm-push-2">
+		    <div class="field1">
+		      <label>Comments: <span class="red">*</span></label>
+			  <textarea rows="3" cols="5" class="inputbox"></textarea>
+		    </div>
+		  </div>
+        </div>
+
+        <div class="blank3"></div>
+        <h4 class="underline">Credit Card Verification:</h4>
+        <br />
+        <div class="row">
+		  <div class="col-md-5 col-sm-5 col-xs-12">
+		    <div class="field1">
+		      <label>Card Number: <span class="red">*</span></label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>Nickname: <span class="red">*</span></label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>Address Line 1: <span class="red">*</span></label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+			  <div class="short">
+			    <label>City: <span class="red">*</span></label>
+			    <input type="text" name="a" class="inputbox" />
+			  </div>
+			  <div class="short">
+			    <label>State: <span class="red">*</span></label>
+			    <select class="inputbox">
+			      <option>1</option>
+				  <option>2</option>
+				  <option>3</option>
+			    </select>
+			  </div>
+			  <div class="short">
+			    <label>Zip: <span class="red">*</span></label>
+			    <input type="text" name="a" class="inputbox" />
+			  </div>
+		    </div>
+		  </div>
+		  
+		  <div class="col-md-5 col-sm-5 col-xs-12 col-sm-push-2">
+		    <div class="field1">
+		      <label>Name as it appears on card: <span class="red">*</span></label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+			  <div class="card">
+			    <label>Card Expiration Month: <span class="red">*</span></label>
+			    <select class="inputbox">
+			      <option>1</option>
+				  <option>2</option>
+				  <option>3</option>
+			    </select>
+			  </div>
+			  <div class="card">
+			    <label>Exp Year: <span class="red">*</span></label>
+			    <select class="inputbox">
+			      <option>1</option>
+				  <option>2</option>
+				  <option>3</option>
+			    </select>
+			  </div>
+		    </div>
+			<div class="field1">
+		      <label>Address Line 2: <span class="red">*</span></label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+		  </div>
+        </div>
+
+        <div class="blank3"></div>
+        <h4 class="underline">eCheck/Bank Draft:</h4>
+        <br />
+        <div class="row">
+		  <div class="col-md-5 col-sm-5 col-xs-12">
+		    <div class="field1">
+		      <label>Bank Name: <span class="red">*</span></label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>Your Account Name: <span class="red">*</span></label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+		      <label>Account Number: <span class="red">*</span></label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+		  </div>
+		  
+		  <div class="col-md-5 col-sm-5 col-xs-12 col-sm-push-2">
+		    <div class="field1">
+		      <label>Bank Routing Number: <span class="red">*</span></label>
+			  <input type="text" name="a" class="inputbox" />
+		    </div>
+			<div class="field1">
+			    <label>Your Account Type: <span class="red">*</span></label>
+			    <select class="inputbox">
+			      <option>1</option>
+				  <option>2</option>
+				  <option>3</option>
+			    </select>
+			  </div>
+		  </div>
+        </div>
+
+        <div class="field1">
+		  <input type="submit" value="Submit Registration Information" class="btn btn-default btn-sm morebtn" />
+        </div>		
+		</form>
+	  </div>
+	</div>
+  </div>
+</div>
+
+<?php include 'inc/footer.php'; ?>

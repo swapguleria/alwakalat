@@ -1,0 +1,15 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule ^error/([A-Za-z0-9\-]+)/(.*)$ register_payment.php?payment=$1&reason=$2
+RewriteRule ^mycamp/student/(.*)$ mycamps.php?student_id=$1
+RewriteRule ^myclass/student/(.*)$ myclasses.php?student_id=$1
+RewriteRule ^faculty/(.*)$ page.php?page=faculty&id=$1
+RewriteRule ^testimonials/(.*)$ testimonial.php?id=$1
+RewriteRule ^upcoming_events/(.*)$ upcoming_event.php?id=$1
+RewriteRule ^new_event/(.*)$ event.php?id=$1
+
+RewriteRule ^([A-Za-z0-9\-]+)$ page.php?page=$1
+
+
+
+

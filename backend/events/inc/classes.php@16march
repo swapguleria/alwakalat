@@ -1,0 +1,615 @@
+<?php
+class model{
+
+	function escape_string($value)
+	{
+		return trim(mysql_real_escape_String(stripslashes($value)));
+	}
+	
+	
+	function Executequery($query)
+	{
+		$result	=	mysql_query($query) or die(mysql_error());
+		return $result;
+	}
+		
+	function locate($url)
+	{
+		header('location:'.$url.'');
+		exit;
+	}
+	
+	function get_num_row($email)
+	{
+		$select	=	"select * from ".Suffix."register where `student_parent_email`='".$email."' ";
+		$query	=	$this->Executequery($select);
+		$rows	=	mysql_num_rows($query);
+		return $rows;
+	}
+	function login()
+	{
+		$username = $_POST['username'];
+		$password = md5($_POST['password']);
+		$select	=	"select * from ".Suffix."register where `student_parent_email`='".$username."' and `register_password`='".$password."' ";
+		$query	=	$this->Executequery($select);
+		$rows	=	mysql_num_rows($query);
+		if($rows>0)
+		{
+			$results	=	mysql_fetch_Assoc($query);
+			$_SESSION['login'] = $results['register_id'];
+			$this->locate('myaccount');
+		}
+		else
+		{
+			$_SESSION['error'] = "Invalid Email/Password.";
+			$this->locate('login');
+		}  
+	}
+	function logout()
+	{
+			unset($_SESSION['login']);
+			$this->locate('login');
+	}
+	
+	function change_password()
+	{
+		$register_id = $_SESSION['login'];
+		$old_pass= md5($_POST['old_pass']);
+		$new_pass= md5($_POST['new_pass']);
+		$retype_pass= $_POST['retype_pass'];		
+		
+		$select	=	"select * from ".Suffix."register where `register_password`='".$old_pass."' and `register_id`='".$register_id."'  ";
+		$query	=	$this->Executequery($select);
+		$rows	=	mysql_num_rows($query);
+		if($rows>0)
+		{
+			$results	=	mysql_fetch_Assoc($query);
+			$update	=	"UPDATE ".Suffix."register SET `register_password`='".$new_pass."' where `register_id`='".$register_id."' ";
+			$query	=	$this->Executequery($update);
+			$this->locate('myaccount');
+		}
+		else
+		{
+			$_SESSION['error'] = "Invalid Old Password.";
+			$this->locate('change_password');
+		}
+	}
+	function edit_address()
+	{
+		$register_id = $_SESSION['login'];
+		$register_address= $_POST['register_address'];
+		$register_phone= $_POST['register_phone'];
+		$register_city= $_POST['register_city'];		
+		$register_state= $_POST['register_state'];		
+		$register_zip= $_POST['register_zip'];			
+		
+			
+			$update	=	"UPDATE ".Suffix."register SET `register_address`='".$register_address."',`register_phone`='".$register_phone."',`register_city`='".$register_city."',`register_state`='".$register_state."',`register_zip`='".$register_zip."' where `register_id`='".$register_id."' ";
+			$query	=	$this->Executequery($update);
+			$this->locate('myaccount');
+	}
+	function get_all_data($table,$field,$sorting)
+	{
+		$select	=	"select * from ".Suffix."$table order by $field $sorting ";
+		$query	=	$this->Executequery($select);
+		$rows	=	mysql_num_rows($query);
+		if($rows>0)
+		{
+			while($results	=	mysql_fetch_Assoc($query))
+			{
+				$abc[]	=	$results;
+			}
+			return $abc;
+		}
+	}
+	function get_select_class_data($table,$sorting,$fieldvalue)
+	{
+		$select	=	"select * from ".Suffix."$table WHERE `class_agefrom` >= '".$fieldvalue."' and `class_ageto` <= '".$fieldvalue."' order by class_id $sorting ";
+		$query	=	$this->Executequery($select);
+		$rows	=	mysql_num_rows($query);
+		if($rows>0)
+		{
+			while($results	=	mysql_fetch_Assoc($query))
+			{
+				$abc[]	=	$results;
+			}
+			return $abc;
+		}
+	}
+	
+	function get_all_data_active($table,$field,$sorting,$active,$value)
+	{
+		$select	=	"select * from ".Suffix."$table where $active='".$value."' order by $field $sorting ";
+		$query	=	$this->Executequery($select);
+		$rows	=	mysql_num_rows($query);
+		if($rows>0)
+		{
+			while($results	=	mysql_fetch_Assoc($query))
+			{
+				$abc[]	=	$results;
+			}
+			return $abc;
+		}
+	}
+	function get_all_data_user($table,$field,$value)
+	{
+		$select	=	"select * from ".Suffix."$table where $field='".$value."' ";
+		$query	=	$this->Executequery($select);
+		$rows	=	mysql_num_rows($query);
+		if($rows>0)
+		{
+			while($results	=	mysql_fetch_Assoc($query))
+			{
+				$abc[]	=	$results;
+			}
+			return $abc;
+		}
+	}
+	function get_field_dual_field_check($table,$field,$field1,$value1,$field2,$value2)
+	{
+		$select	=	"select $field from ".Suffix."$table where $field1='".$value1."' and $field2='".$value2."'";
+		$query	=	$this->Executequery($select);
+		$result	=	mysql_fetch_Assoc($query);
+		return $result[$field];
+	}
+	
+	function get_all_data_active_from_field($table,$field,$sorting,$active,$value,$fields,$fielsvalue)
+	{
+		$select	=	"select * from ".Suffix."$table where $active='".$value."' and $fields='".$fielsvalue."' order by $field $sorting ";
+		$query	=	$this->Executequery($select);
+		$rows	=	mysql_num_rows($query);
+		if($rows>0)
+		{
+			while($results	=	mysql_fetch_Assoc($query))
+			{
+				$abc[]	=	$results;
+			}
+			return $abc;
+		}
+	}
+	function get_all_data_active_home($table,$field,$sorting,$active,$value)
+	{
+		$select	=	"select * from ".Suffix."$table where $active='".$value."' AND `pages_slug`!='home' order by $field $sorting ";
+		$query	=	$this->Executequery($select);
+		$rows	=	mysql_num_rows($query);
+		if($rows>0)
+		{
+			while($results	=	mysql_fetch_Assoc($query))
+			{
+				$abc[]	=	$results;
+			}
+			return $abc;
+		}
+	}
+	
+	function get_single_field($table,$field,$fieldvalue,$id)
+	{
+		$select	=	"select $field from ".Suffix."$table where $fieldvalue='".$id."'";
+		$query	=	$this->Executequery($select);
+		$result	=	mysql_fetch_Assoc($query);
+		return $result[$field];
+	}
+	
+	function get_single_result($table,$field,$id)
+	{
+		$select	=	"select * from ".Suffix."$table where $field='".$id."'";
+		$query	=	$this->Executequery($select);
+		$result	=	mysql_fetch_Assoc($query);
+		return $result;
+	}
+	
+	function get_myclass_data($id)
+	{
+		$select	=	"select * from ".Suffix."$table where $field='".$id."'";
+		$query	=	$this->Executequery($select);
+		$result	=	mysql_fetch_Assoc($query);
+		return $result;
+	}
+	
+	
+	
+	function make_thumb($src, $dest, $desired_width,$type) {
+	/* read the source image */  
+	if($type=='jpg' || $type=='jpeg'){	$source_image = imagecreatefromjpeg($src);		}
+	else if($type=='png'){		$source_image = imagecreatefrompng($src);		}  $width = imagesx($source_image);  $height = imagesy($source_image);    /* find the "desired height" of this thumbnail, relative to the desired width  */  $desired_height = 188;    /* create a new, "virtual" image */  $virtual_image = imagecreatetruecolor($desired_width, $desired_height);    /* copy source image at a resized size */  imagecopyresampled($virtual_image, $source_image, 0, 0, 0, 0, $desired_width, $desired_height, $width, $height);    /* create the physical thumbnail image to its destination */  
+	if($type=='jpg' || $type=='jpeg'){	$source_image = imagejpeg($virtual_image, $dest);		}
+	else if
+	($type=='png'){		$source_image = imagepng($virtual_image, $dest);}
+	}
+	
+	function student_registration()
+	{
+		$student_firstname	=	$this->escape_string($_POST['student_firstname']);
+		$student_gender	=	$this->escape_string($_POST['student_gender']);
+		$student_parent_name	=	$this->escape_string($_POST['student_parent_name']);
+		$register_phone		=	$this->escape_string($_POST['register_phone']);
+		$student_parent_email		=	$this->escape_string($_POST['student_parent_email']);
+		$student_mother_employment	=	$this->escape_string($_POST['student_mother_employment']);
+		$student_mother_cellno	=	$this->escape_string($_POST['student_mother_cellno']);
+		$student_father_employment	=	$this->escape_string($_POST['student_father_employment']);
+		$student_father_cellno		=	$this->escape_string($_POST['student_father_cellno']);
+		$student_age		=	$this->escape_string($_POST['student_age']);
+		$student_tshirt_size		=	$this->escape_string($_POST['student_tshirt_size']);
+		$student_birth	=	$this->escape_string($_POST['student_birth']);
+		$register_address=	$this->escape_string($_POST['register_address']);
+		$student_mother_workno	=	$this->escape_string($_POST['student_mother_workno']);
+		$register_city		=	$this->escape_string($_POST['register_city']);
+		$register_state		=	$this->escape_string($_POST['register_state']);
+		$register_zip		=	$this->escape_string($_POST['register_zip']);
+		$student_father_workno		=	$this->escape_string($_POST['student_father_workno']);	
+		$register_teacher_voice	=	$this->escape_string($_POST['register_teacher_voice']);		
+		$register_teacher_dance	=	$this->escape_string($_POST['register_teacher_acting']);		
+		$register_teacher_acting	=	$this->escape_string($_POST['register_teacher_acting']);		
+		$register_teacher_piano	=	$this->escape_string($_POST['register_teacher_piano']);		
+		$register_gaurdain	=	$this->escape_string($_POST['register_gaurdain']);		
+		$register_authorize	=	$this->escape_string($_POST['register_authorize_phone']);		
+		$register_authorize_phone	=	$this->escape_string($_POST['register_authorize_phone']);		
+		$register_parents_signature	=	$this->escape_string($_POST['register_parents_signature']);		
+		$register_date	=	$this->escape_string($_POST['register_date']);		
+		$register_before_val	=	$this->escape_string($_POST['register_before']);		
+		$register_findus	=	$this->escape_string($_POST['register_findus']);		
+		$register_findus_quote	=	$this->escape_string($_POST['register_findus_quote']);	
+		if($register_before_val == 'on'){$register_before = 'yes';}
+		else {$register_before = 'no';}
+		$spn = explode(' ',$student_parent_name);
+		
+		
+	 	$insert_personal	=	"INSERT INTO ".Suffix."register SET
+					`student_firstname`='".$student_firstname."',
+					`student_gender`='".$student_gender."',
+					`student_parent_name`='".$student_parent_name."',
+					`register_phone`='".$register_phone."',
+					`student_parent_email`='".$student_parent_email."',
+					`student_mother_employment`='".$student_mother_employment."',
+					`student_mother_cellno`='".$student_mother_cellno."',
+					`student_father_employment`='".$student_father_employment."',
+					`student_father_cellno`='".$student_father_cellno."',
+					`student_age`='".$student_age."',
+					`student_tshirt_size`='".$student_tshirt_size."',
+					`student_birth`='".$student_birth."',
+					`register_address`='".$register_address."',
+					`student_mother_workno`='".$student_mother_workno."',
+					`register_city`='".$register_city."',
+					`register_state`='".$register_state."',
+					`register_zip`='".$register_zip."',
+					`student_father_workno`='".$student_father_workno."',
+					`register_teacher_voice`='".$register_teacher_voice."',
+					`register_teacher_dance`='".$register_teacher_dance."',
+					`register_teacher_acting`='".$register_teacher_acting."',
+					`register_teacher_piano`='".$register_teacher_piano."',
+					`register_gaurdain`='".$register_gaurdain."',
+					`register_authorize`='".$register_authorize."',
+					`register_authorize_phone`='".$register_authorize_phone."',
+					`register_parents_signature`='".$register_parents_signature."',
+					`register_date`='".$register_date."',
+					`register_before`='".$register_before."',
+					`register_findus`='".$register_findus."',
+					`register_findus_quote`='".$register_findus_quote."',
+					`registeration_date`=now()";
+	
+		$query_personal			=	mysql_query($insert_personal) or die(mysql_error());
+		$register_id	=	mysql_insert_id(); 	
+		$username = $spn[0].$register_id.rand(100, 999);
+		$password =$register_id.rand(100000, 999999);
+		$update = "UPDATE ".Suffix."register SET `register_username`='".$username."',`register_password`='".md5($password)."' WHERE `register_id`='".$register_id."'";
+		$query_personal1			=	mysql_query($update) or die(mysql_error());
+		
+		
+			$headers 		= "MIME-Version: 1.0" . "\r\n";
+			$headers 		.= "Content-type:text/html;charset=UTF-8" . "\r\n";
+			$headers 		.= 'From: <no-reply@mytestserver.co.in>' . "\r\n";
+			$subject	=	'Username and password for the student parents';
+			$message	=	"You are registerd for our academy<br>You Email is ".$student_parent_email."<br> and password is ".$password;
+			mail($student_parent_email,$subject,$message,$headers);
+			
+			
+			
+		$student_class_1	=	$this->escape_string($_POST['student_class_1']);
+		$student_class_2	=	$this->escape_string($_POST['student_class_2']);
+		$student_class_3	=	$this->escape_string($_POST['student_class_3']);
+		$student_class_4	=	$this->escape_string($_POST['student_class_4']);
+		$student_class_5	=	$this->escape_string($_POST['student_class_5']);
+		$student_class_6	=	$this->escape_string($_POST['student_class_6']);
+		$student_class_7	=	$this->escape_string($_POST['student_class_7']);
+		$student_class_8	=	$this->escape_string($_POST['student_class_8']);
+		$student_class_id_1	=	$this->escape_string($_POST['student_class_id_1']);
+		$student_class_id_2	=	$this->escape_string($_POST['student_class_id_2']);
+		$student_class_id_3	=	$this->escape_string($_POST['student_class_id_3']);
+		$student_class_id_4	=	$this->escape_string($_POST['student_class_id_4']);
+		$student_class_id_5	=	$this->escape_string($_POST['student_class_id_5']);
+		$student_class_id_6	=	$this->escape_string($_POST['student_class_id_6']);
+		$student_class_id_7	=	$this->escape_string($_POST['student_class_id_7']);
+		$student_class_id_8	=	$this->escape_string($_POST['student_class_id_8']);
+		
+		for($i=1;$i<9;$i++)
+		{
+			if($this->escape_string($_POST['student_class_'.$i]) != "")
+			{
+				$sclass[]=$this->escape_string($_POST['student_class_'.$i]);
+				$sclassid[]=$this->escape_string($_POST['student_class_id_'.$i]);
+			}		
+		}
+		
+			$j=0;
+		foreach ($sclass as $stduent_class){
+		$insert_student_class	=	"INSERT INTO ".Suffix."student SET
+					`student_id`='1',
+					`student_class_id`='".$sclassid[$j]."',
+					`student_class`='".$stduent_class."',
+					`student_name`='".$student_firstname."',
+					`register_id`='".$register_id."',						
+					`class_fee`='20',						
+					`student_payment`='no'";	
+		
+		$query_student_class	=	mysql_query($insert_student_class) or die(mysql_error());	$j++;
+		}
+		
+		if($query_personal)
+		{
+			$this->locate('register_payment.php?register_id='.$register_id); 
+		}
+	}
+	function student_payment()
+	{
+		$register_id=$_POST['register_id'];
+		$data=$this->get_single_result('register','register_id',$register_id) ;
+		// By default, this sample code is designed to post to our test server for
+		// developer accounts: https://test.authorize.net/gateway/transact.dll
+		// for real accounts (even in test mode), please make sure that you are
+		// posting to: https://secure.authorize.net/gateway/transact.dll
+
+		$post_url = "https://secure.authorize.net/gateway/transact.dll";
+
+		 //$post_url = "https://test.authorize.net/gateway/transact.dll";
+
+		$post_values = array(
+			
+			// the API Login ID and Transaction Key must be replaced with valid values
+			  "x_login"			=> "5g3mAjVyDa49",
+			"x_tran_key"		=> "67938M28Qf6wdLFy",  
+			
+			/* "x_login"			=> "7euF7zw6gjLq",
+			"x_tran_key"		=> "7u533qMkZ7Uwg6j5", */
+		 
+		 
+			"x_version"			=> "3.1",
+			"x_delim_data"		=> "TRUE",
+			"x_delim_char"		=> "|",
+			"x_relay_response"	=> "FALSE",
+
+			"x_type"			=> "AUTH_CAPTURE",
+			"x_method"			=> "CC",
+			"x_card_num"		=> $_POST['ccnum'],
+			"x_exp_date"		=> $_POST['expm']."/".$_POST['expy'],
+			"x_card_code"		=> $_POST['cvv'],
+
+			"x_amount"			=> $_POST['amount'],
+			"x_description"		=> "mytestserver.co.in/events/",
+
+			"x_first_name"		=> $_POST['bfname'],
+			"x_last_name"		=> $_POST['blname'],	
+			"x_zip"				=> $_POST['zipcode']
+			 //"ParentName"      =>$_POST['parent_name'],
+			// "StudentName"      =>$_POST['student_name'],
+			// "Email"     		 =>$_POST['email'],
+			// "Grade next year"      =>$_POST['grade'] 
+			 
+			// Additional fields can be added here as outlined in the AIM integration
+			// guide at: http://developer.authorize.net
+		);
+
+		// This section takes the input fields and converts them to the proper format
+		// for an http post.  For example: "x_login=username&x_tran_key=a1B2c3D4"
+		$post_string = "";
+		foreach( $post_values as $key => $value )
+			{ $post_string .= "$key=" . urlencode( $value ) . "&"; }
+		$post_string = rtrim( $post_string, "& " );
+
+
+
+		// This sample code uses the CURL library for php to establish a connection,
+		// submit the post, and record the response.
+		// If you receive an error, you may want to ensure that you have the curl
+		// library enabled in your php configuration
+		$request = curl_init($post_url); // initiate curl object
+			curl_setopt($request, CURLOPT_HEADER, 0); // set to 0 to eliminate header info from response
+			curl_setopt($request, CURLOPT_RETURNTRANSFER, 1); // Returns response data instead of TRUE(1)
+			curl_setopt($request, CURLOPT_POSTFIELDS, $post_string); // use HTTP POST to send form data
+			curl_setopt($request, CURLOPT_SSL_VERIFYPEER, FALSE); // uncomment this line if you get no gateway response.
+			$post_response = curl_exec($request); // execute curl post and store results in $post_response
+			// additional options may be required depending upon your server configuration
+			// you can find documentation on curl options at http://www.php.net/curl_setopt
+		curl_close ($request); // close curl object
+
+		// This line takes the response and breaks it into an array using the specified delimiting character
+		$response_array = explode($post_values["x_delim_char"],$post_response);
+
+		 echo "<OL>\n";
+		foreach ($response_array as $value)
+		{
+			echo "<LI>" . $value . "&nbsp;</LI>\n";
+			$i++;
+		}
+		echo "</OL>\n"; 
+
+		$cctrim=substr($_POST['ccnum'],-4);
+
+		if($response_array[0]=="1"){
+			$user_subject	=	'Receipt for payment(Confirmation:'.$response_array[4].')';
+			$admin_subject	=	'Student payment paid'; 
+			$user_message	=	'<p>Thank you for partnering with us.Your payment is greatly appreciated </p><br/>' ;
+			$message		=	'<p>This transaction has been approved.</p>';
+			$message		.=	'<p><b>Transaction Detail</b></p><p>Authorization Code:'.$response_array[4].'</p>';
+			$message		.=	'<p>Transaction ID:'.$response_array[6].'</p>';		
+			$message		.=	'<p>Student Name:'.$_POST['student_name'].'</p>';
+			//$message		.=	'<p>Grade next year:'.$_POST['grade'].'</p>';
+			//$message		.=	'<p><b>Information</b></p><p>Parent Name:'.$_POST['parent_name'].'</p>';
+			$message		.=	'<p>Email: '.$_POST['email'].'</p>';		
+			$message		.=	'<p><b>Billing Information</b></p><p>Firstname:'.$_POST['bfname'].'</p>';
+			$message		.=	'<p>Lastname:'.$_POST['blname'].'</p>';
+			$message		.=	'<p>Zipcode:'.$_POST['zipcode'].'</p>';
+			$message		.=	'<p>Amount:$'.$_POST['amount'].'</p>';
+			$headers 		= "MIME-Version: 1.0" . "\r\n";
+			$headers 		.= "Content-type:text/html;charset=UTF-8" . "\r\n";
+			$headers 		.= 'From: <no-reply@mytestserver.co.in>' . "\r\n";
+			$user_mail	=	$user_message.''.$message;
+			$admin_mail	=	$message;
+			mail('bikramjit@vtaurus.com',$admin_subject,$admin_mail,$headers);
+			/* mail('allenk@clhs-tx.org',$admin_subject,$admin_mail,$headers); */
+			//mail('wallochr@clhs-tx.org',$admin_subject,$admin_mail,$headers);
+			//mail('raymondc@clhs-tx.org',$admin_subject,$admin_mail,$headers);
+			mail($data['student_parent_email'],$admin_subject,$user_mail,$headers);
+			
+			
+			$update = "UPDATE ".Suffix."student SET `student_payment`='yes' WHERE `register_id`='".$register_id."' and `student_name`='".$data['student_firstname']."'";
+			$query_personal1			=	mysql_query($update) or die(mysql_error());
+			$update1 = "UPDATE ".Suffix."register SET `register_payment`='yes' WHERE `register_id`='".$register_id."'";
+			$query_personal2			=	mysql_query($update1) or die(mysql_error());
+			
+			
+			echo "<script type=\"text/javascript\">location.href=\"thank-you?payment=".$response_array[4]."&fname=".$_POST['bfname']."&parent_name=".$_POST['parent_name']."&student_name=".$_POST['student_name']."&email_address=".$_POST['email']."&grade=".$_POST['grade']."&lname=".$_POST['blname']."&zipcode=".$_POST['zipcode']."&ccnum=".$cctrim."&expdate=".$_POST['expm']."/".$_POST['expy']."&amount=".$_POST['amount']."\";</script>";
+		 }
+		else {
+			echo "<script type=\"text/javascript\">location.href=\"register_payment.php?register_id=".$_POST['register_id']."&payment=fail&reason=".$response_array[3]."\";</script>";
+		} 	 				
+	}
+	
+	
+	function student_payment1()
+	{
+		$register_id=$_POST['register_id'];
+		$data=$this->get_single_result('register','register_id',$register_id) ;
+include('AuthorizeNet.php'); 
+ define("AUTHORIZENET_API_LOGIN_ID", "8M82hrfrB3"); 
+ define("AUTHORIZENET_TRANSACTION_KEY", "22h55eUvS6gG3597"); 
+ $subscription = new AuthorizeNet_Subscription;
+ $subscription->name = "PHP Monthly Magazine"; 
+ $subscription->intervalLength = "1";
+ $subscription->intervalUnit = "months"; 
+ $subscription->startDate = "2015-03-13"; 
+ $subscription->totalOccurrences = "12"; 
+ $subscription->amount = "12.99"; 
+ $subscription->creditCardCardNumber = "6011000000000012"; 
+ $subscription->creditCardExpirationDate= "2018-10"; 
+ $subscription->creditCardCardCode = "123"; 
+ $subscription->orderDescription = "";
+        $subscription->customerId = $register_id;
+        $subscription->customerEmail =$data['student_parent_email'];
+        $subscription->customerPhoneNumber = "3442";
+        $subscription->customerFaxNumber = "43441244";
+        $subscription->billToFirstName = "abc";
+        $subscription->billToLastName = "aaa";
+        $subscription->billToCompany = "fff";
+        $subscription->billToAddress = "add";
+        $subscription->billToCity = "city";
+        $subscription->billToState = "state";
+        $subscription->billToZip = "222";
+        $subscription->billToCountry = "us";
+        $subscription->shipToFirstName = "";
+        $subscription->shipToLastName = "";
+        $subscription->shipToCompany = "";
+        $subscription->shipToAddress = "";
+        $subscription->shipToCity = "";
+        $subscription->shipToState = "";
+        $subscription->shipToZip = "";
+        $subscription->shipToCountry = ""; 
+ $request = new AuthorizeNetARB; 
+ $response = $request->createSubscription($subscription);
+ $subscription_id = $response->getSubscriptionId();
+ $resultcode = $response->getResultCode();
+	echo '<pre>';
+	print_R($response);
+	echo '</pre>';
+
+$text	=	'<p class="error">'.$error1.'</p>';
+$approved	=	$response->approved;
+$amount		=	$response->amount;
+$transaction_id		=	$response->transaction_id;
+$date				=	date('Y-m-d');
+$userid		=	'12';
+
+
+/* $update	=	"update `invoices` SET `status`='Paid',`callback_data`='$str_callback',`payment_method`='authnet_sim' where `sid`='".$invoice."'";
+$query	=	mysql_query($update) or die(mysql_error());  */
+
+/****** mail to admin ***********/
+					$to			=	'kamal@vtaurus.com';
+					$subject	=	'Merchant Email Receipt';
+					$message	=	'<table><tr><td colspan="2">========= ORDER INFORMATION =========</td></tr>
+								<tr><td>Invoice :</td><td> '.$invoice.'</td></tr>
+								<tr><td>Description :</td><td>'.$x_description.'</td></tr>
+								<tr><td>Amount :</td><td> '.$amount.'.00 (USD)</td></tr>
+								<tr><td colspan="2">==== CUSTOMER BILLING INFORMATION ===</td></tr>
+								<tr><td>First Name :</td><td> '.$x_first_name.'</td></tr>
+								<tr><td>Last Name :</td><td>'.$x_last_name.'</td></tr>
+								<tr><td>Company :</td><td> '.$x_company.'</td></tr>
+								<tr><td>Address :</td><td> '.$x_address.'</td></tr>
+								<tr><td>City  :</td><td> '.$x_city.'</td></tr>
+								<tr><td>State/Province :</td><td> '.$x_state.'</td></tr>
+								<tr><td>Zip/Postal Code :</td><td> '.$x_zip.'</td></tr>
+								<tr><td>Country  :</td><td> '.$x_country.'</td></tr>
+								<tr><td>Phone  :</td><td> '.$x_phone.'</td></tr>
+								
+								<tr><td>E-Mail  :</td><td> '.$email.'</td></tr>
+								
+								</table>';
+					$headers	= 	"MIME-Version: 1.0" . "\r\n";
+					$headers   .= 	"Content-type:text/html;charset=UTF-8" . "\r\n";
+
+					
+					$headers   .= 	'From: <no-reply@mytestserver.co.in>' . "\r\n";
+					mail($to,$subject,$message,$headers);
+					
+	
+		foreach ($response_array as $value)
+		{
+			echo "<LI>" . $value . "&nbsp;</LI>\n";
+			$i++;
+		}
+		echo "</OL>\n"; 
+
+		$cctrim=substr($_POST['ccnum'],-4);
+
+		if($resultcode=='Ok'){
+			$user_subject	=	'Receipt for payment(Confirmation:'.$response_array[4].')';
+			$admin_subject	=	'Student payment paid'; 
+			$user_message	=	'<p>Thank you for partnering with us.Your payment is greatly appreciated </p><br/>' ;
+			$message		=	'<p>This transaction has been approved.</p>';
+			$message		.=	'<p><b>Transaction Detail</b></p><p>Authorization Code:'.$response_array[4].'</p>';
+			$message		.=	'<p>Transaction ID:'.$response_array[6].'</p>';		
+			$message		.=	'<p>Student Name:'.$_POST['student_name'].'</p>';
+			//$message		.=	'<p>Grade next year:'.$_POST['grade'].'</p>';
+			//$message		.=	'<p><b>Information</b></p><p>Parent Name:'.$_POST['parent_name'].'</p>';
+			$message		.=	'<p>Email: '.$_POST['email'].'</p>';		
+			$message		.=	'<p><b>Billing Information</b></p><p>Firstname:'.$_POST['bfname'].'</p>';
+			$message		.=	'<p>Lastname:'.$_POST['blname'].'</p>';
+			$message		.=	'<p>Zipcode:'.$_POST['zipcode'].'</p>';
+			$message		.=	'<p>Amount:$'.$_POST['amount'].'</p>';
+			$headers 		= "MIME-Version: 1.0" . "\r\n";
+			$headers 		.= "Content-type:text/html;charset=UTF-8" . "\r\n";
+			$headers 		.= 'From: <no-reply@mytestserver.co.in>' . "\r\n";
+			$user_mail	=	$user_message.''.$message;
+			$admin_mail	=	$message;
+			mail('bikramjit@vtaurus.com',$admin_subject,$admin_mail,$headers);
+			/* mail('allenk@clhs-tx.org',$admin_subject,$admin_mail,$headers); */
+			//mail('wallochr@clhs-tx.org',$admin_subject,$admin_mail,$headers);
+			//mail('raymondc@clhs-tx.org',$admin_subject,$admin_mail,$headers);
+			mail($data['student_parent_email'],$admin_subject,$user_mail,$headers);
+			
+			die();
+			$update = "UPDATE ".Suffix."student SET `student_payment`='yes' WHERE `register_id`='".$register_id."' and `student_name`='".$data['student_firstname']."'";
+			$query_personal1			=	mysql_query($update) or die(mysql_error());
+			$update1 = "UPDATE ".Suffix."register SET `register_payment`='yes' WHERE `register_id`='".$register_id."'";
+			$query_personal2			=	mysql_query($update1) or die(mysql_error());
+			
+			
+			echo "<script type=\"text/javascript\">location.href=\"thank-you?payment=".$response_array[4]."&fname=".$_POST['bfname']."&parent_name=".$_POST['parent_name']."&student_name=".$_POST['student_name']."&email_address=".$_POST['email']."&grade=".$_POST['grade']."&lname=".$_POST['blname']."&zipcode=".$_POST['zipcode']."&ccnum=".$cctrim."&expdate=".$_POST['expm']."/".$_POST['expy']."&amount=".$_POST['amount']."\";</script>";
+		 }
+		else {
+			echo "<script type=\"text/javascript\">location.href=\"register_payment.php?register_id=".$_POST['register_id']."&payment=fail&reason=".$response_array[3]."\";</script>";
+		}
+		
+	}
+}
+
+?>

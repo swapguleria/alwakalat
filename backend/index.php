@@ -1,0 +1,617 @@
+<?php include 'inc/config.php'; ?>
+<?php
+/* if(isset($_SESSION['admin'])){ $obj->locate('register_user.php'); } */
+
+
+ include 'inc/template_start.php'; ?>
+<?php include 'inc/page_head.php';
+if(isset($_GET['del_id']))
+{
+	$obj->delete_data('social_links','id',$_GET['del_id'],'manage_header.php');
+}
+
+	$logo	=	$obj->get_single_result('logo','id','1');
+	$social	=	$obj->get_all_data('social_links','id','desc');
+?>
+
+ 
+<?php $obj->admin_not_login(); ?>
+<!-- Page content -->
+<div id="page-content">
+
+<h1>Welcome To Admin Pannel</h1>
+<div id="page-content">
+
+    <!-- Blank Header -->
+
+    
+
+    <ul class="breadcrumb breadcrumb-top">
+
+		<li>Index</li>
+		
+       
+
+    </ul>
+
+    <!-- END Blank Header -->
+
+
+
+    <!-- Example Block -->
+
+    <div class="block">
+
+        <!-- Example Title -->
+
+        <div class="block-title">
+
+            <h2>Header Content</h2>
+
+        </div>
+
+        <!-- END Example Title -->
+
+
+
+        <!-- Example Content -->
+
+			<form action="process.php" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
+			<input type="hidden" name="action" value="edit_logo">
+              <input type="hidden" name="slider_id" value="<?php echo $logo['id']; ?>">
+              <input type="hidden" name="slider_name1" value="<?php echo $logo['name']; ?>">
+              
+                    <fieldset>
+					<?php if(isset($_SESSION['success'])) { ?>
+						<div style="color: red;font-size: 15px;padding: 5px;"><?php echo $_SESSION['success']; unset($_SESSION['success']);?></div>
+					<?php } ?>
+                        
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="logo"> Logo Image <span class="text-danger">*</span></label>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <input type="file" id="slider" name="slider">
+								</div>
+                            </div>
+                        </div>												
+						
+               
+                   
+                    
+					<div class="form-group">
+					<?php if($logo['name'] !='') {?>
+							<img src="../<?php echo $logo['full_path'];?> ">
+					<?php } ?>
+					</div>
+					<div class="form-group form-actions">
+                        <div class="col-md-8 col-md-offset-4">
+                            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-arrow-right"></i> Submit</button>
+                           
+                        </div>
+                    </div>
+                </form>
+			</div>
+<div class="block">			
+				<div class="table-responsive">
+				   <div class="table-options clearfix">
+				   
+					<a href="add_link.php"><div class="btn-group btn-group-sm pull-left">
+						<label id="style-default" class="btn btn-primary active" data-toggle="tooltip" title="Add Slider">
+							Add Social Link
+					</div>
+					</a>
+				</div>
+            <!--
+            Available Table Classes:
+                'table'             - basic table
+                'table-bordered'    - table with full borders
+                'table-borderless'  - table with no borders
+                'table-striped'     - striped table
+                'table-condensed'   - table with smaller top and bottom cell padding
+                'table-hover'       - rows highlighted on mouse hover
+                'table-vcenter'     - middle align content vertically
+            -->
+            <table id="general-table" class="table table-striped table-vcenter">
+                <thead>
+				<?php if(is_array($social)){ ?>
+                    <tr>
+						<th>Social Icon</th>
+						<th>Address</th>
+                        <th>Active</th>
+                        <th style="width: 150px;" class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+				<?php 
+					foreach($social as $value)
+					{
+				?>
+                    <tr>
+                        
+                       
+                        <td><?php if($value['name']!='') { ?>
+							<img src="../<?php echo $value['full_path']; ?>">
+						<?php }?></td>
+                        <td><?php echo $value['address']; ?></td>
+                        <td><?php echo $value['active']; ?></td>
+                        
+                        <td class="text-center">
+                            <div class="btn-group btn-group-xs">
+                                <a href="edit_links.php?id=<?php echo $value['id'];?>" data-toggle="tooltip" title="Edit" class="btn btn-default"><i class="fa fa-pencil"></i></a>
+                                <a href="manage_header.php?del_id=<?php echo $value['id'];?>" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-times"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+					<?php } }else{ ?>
+					<tr>No data Here</tr>
+                    <?php } ?>
+                </tbody>
+              
+            </table>
+        </div>
+
+        <!-- END Example Content -->
+
+    </div>
+
+    <!-- END Example Block -->
+
+</div>
+
+<!-- END Page Content -->
+
+
+
+    <!-- Dashboard Header -->
+    <!-- For an image header add the class 'content-header-media' and an image as in the following example -->
+	<?php /*
+    <div class="content-header content-header-media">
+        <div class="header-section">
+            <div class="row">
+                <!-- Main Title (hidden on small devices for the statistics to fit) -->
+                <div class="col-md-4 col-lg-6 hidden-xs hidden-sm">
+                    <h1>Welcome <strong>Admin</strong><br><small>You Look Awesome!</small></h1>
+                </div>
+                <!-- END Main Title -->
+
+                <!-- Top Stats -->
+                <div class="col-md-8 col-lg-6">
+                    <div class="row text-center">
+                        <div class="col-xs-4 col-sm-3">
+                            <h2 class="animation-hatch">
+                                $<strong>93.7k</strong><br>
+                                <small><i class="fa fa-thumbs-o-up"></i> Great</small>
+                            </h2>
+                        </div>
+                        <div class="col-xs-4 col-sm-3">
+                            <h2 class="animation-hatch">
+                                <strong>167k</strong><br>
+                                <small><i class="fa fa-heart-o"></i> Likes</small>
+                            </h2>
+                        </div>
+                        <div class="col-xs-4 col-sm-3">
+                            <h2 class="animation-hatch">
+                                <strong>101</strong><br>
+                                <small><i class="fa fa-calendar-o"></i> Events</small>
+                            </h2>
+                        </div>
+                        <!-- We hide the last stat to fit the other 3 on small devices -->
+                        <div class="col-sm-3 hidden-xs">
+                            <h2 class="animation-hatch">
+                                <strong>27&deg; C</strong><br>
+                                <small><i class="fa fa-map-marker"></i> Sydney</small>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Top Stats -->
+            </div>
+        </div>
+        <!-- For best results use an image with a resolution of 2560x248 pixels (You can also use a blurred image with ratio 10:1 - eg: 1000x100 pixels - it will adjust and look great!) -->
+        <img src="img/placeholders/headers/dashboard_header.jpg" alt="header image" class="animation-pulseSlow">
+    </div>
+    <!-- END Dashboard Header -->
+
+    <!-- Mini Top Stats Row -->
+    <div class="row">
+        <div class="col-sm-6 col-lg-3">
+            <!-- Widget -->
+            <div class="widget">
+                <div class="widget-simple">
+                    <a href="page_ready_article.php" class="widget-icon pull-left themed-background-autumn animation-fadeIn">
+                        <i class="fa fa-file-text"></i>
+                    </a>
+                    <h3 class="widget-content text-right animation-pullDown">
+                        New <strong>Article</strong><br>
+                        <small>Mountain Trip</small>
+                    </h3>
+                </div>
+            </div>
+            <!-- END Widget -->
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <!-- Widget -->
+            <div class="widget">
+                <div class="widget-simple">
+                    <a href="page_comp_charts.php" class="widget-icon pull-left themed-background-spring animation-fadeIn">
+                        <i class="gi gi-usd"></i>
+                    </a>
+                    <h3 class="widget-content text-right animation-pullDown">
+                        + <strong>250%</strong><br>
+                        <small>Sales Today</small>
+                    </h3>
+                </div>
+            </div>
+            <!-- END Widget -->
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <!-- Widget -->
+            <div class="widget">
+                <div class="widget-simple">
+                    <a href="page_ready_inbox.php" class="widget-icon pull-left themed-background-fire animation-fadeIn">
+                        <i class="gi gi-envelope"></i>
+                    </a>
+                    <h3 class="widget-content text-right animation-pullDown">
+                        5 <strong>Messages</strong>
+                        <small>Support Center</small>
+                    </h3>
+                </div>
+            </div>
+            <!-- END Widget -->
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <!-- Widget -->
+            <div class="widget">
+                <div class="widget-simple">
+                    <a href="page_comp_gallery.php" class="widget-icon pull-left themed-background-amethyst animation-fadeIn">
+                        <i class="gi gi-picture"></i>
+                    </a>
+                    <h3 class="widget-content text-right animation-pullDown">
+                        +30 <strong>Photos</strong>
+                        <small>Gallery</small>
+                    </h3>
+                </div>
+            </div>
+            <!-- END Widget -->
+        </div>
+        <div class="col-sm-6">
+            <!-- Widget -->
+            <div class="widget">
+                <div class="widget-simple">
+                    <a href="page_comp_charts.php" class="widget-icon pull-left themed-background animation-fadeIn">
+                        <i class="gi gi-wallet"></i>
+                    </a>
+                    <div class="pull-right">
+                        <!-- Jquery Sparkline (initialized in js/pages/index.js), for more examples you can check out http://omnipotent.net/jquery.sparkline/#s-about -->
+                        <span id="mini-chart-sales"></span>
+                    </div>
+                    <h3 class="widget-content animation-pullDown visible-lg">
+                        Latest <strong>Sales</strong>
+                        <small>Per hour</small>
+                    </h3>
+                </div>
+            </div>
+            <!-- END Widget -->
+        </div>
+        <div class="col-sm-6">
+            <!-- Widget -->
+            <div class="widget">
+                <div class="widget-simple">
+                    <a href="page_widgets_stats.php" class="widget-icon pull-left themed-background animation-fadeIn">
+                        <i class="gi gi-crown"></i>
+                    </a>
+                    <div class="pull-right">
+                        <!-- Jquery Sparkline (initialized in js/pages/index.js), for more examples you can check out http://omnipotent.net/jquery.sparkline/#s-about -->
+                        <span id="mini-chart-brand"></span>
+                    </div>
+                    <h3 class="widget-content animation-pullDown visible-lg">
+                        Our <strong>Brand</strong>
+                        <small>Popularity over time</small>
+                    </h3>
+                </div>
+            </div>
+            <!-- END Widget -->
+        </div>
+    </div>
+    <!-- END Mini Top Stats Row -->
+
+    <!-- Widgets Row -->
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Timeline Widget -->
+            <div class="widget">
+                <div class="widget-extra themed-background-dark">
+                    <div class="widget-options">
+                        <div class="btn-group btn-group-xs">
+                            <a href="javascript:void(0)" class="btn btn-default" data-toggle="tooltip" title="Edit Widget"><i class="fa fa-pencil"></i></a>
+                            <a href="javascript:void(0)" class="btn btn-default" data-toggle="tooltip" title="Quick Settings"><i class="fa fa-cog"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="widget-content-light">
+                        Latest <strong>News</strong>
+                        <small><a href="page_ready_timeline.php"><strong>View all</strong></a></small>
+                    </h3>
+                </div>
+                <div class="widget-extra">
+                    <!-- Timeline Content -->
+                    <div class="timeline">
+                        <ul class="timeline-list">
+                            <li class="active">
+                                <div class="timeline-icon"><i class="gi gi-airplane"></i></div>
+                                <div class="timeline-time"><small>just now</small></div>
+                                <div class="timeline-content">
+                                    <p class="push-bit"><a href="page_ready_user_profile.php"><strong>Jordan Carter</strong></a></p>
+                                    <p class="push-bit">The trip was an amazing and a life changing experience!!</p>
+                                    <p class="push-bit"><a href="page_ready_article.php" class="btn btn-xs btn-primary"><i class="fa fa-file"></i> Read the article</a></p>
+                                    <div class="row push">
+                                        <div class="col-sm-6 col-md-4">
+                                            <a href="img/placeholders/photos/photo1.jpg" data-toggle="lightbox-image">
+                                                <img src="img/placeholders/photos/photo1.jpg" alt="image">
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-6 col-md-4">
+                                            <a href="img/placeholders/photos/photo22.jpg" data-toggle="lightbox-image">
+                                                <img src="img/placeholders/photos/photo22.jpg" alt="image">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="active">
+                                <div class="timeline-icon themed-background-fire themed-border-fire"><i class="fa fa-file-text"></i></div>
+                                <div class="timeline-time"><small>5 min ago</small></div>
+                                <div class="timeline-content">
+                                    <p class="push-bit"><a href="page_ready_user_profile.php"><strong>Administrator</strong></a></p>
+                                    <strong>Free courses</strong> for all our customers at A1 Conference Room - 9:00 <strong>am</strong> tomorrow!
+                                </div>
+                            </li>
+                            <li class="active">
+                                <div class="timeline-icon"><i class="gi gi-drink"></i></div>
+                                <div class="timeline-time"><small>3 hours ago</small></div>
+                                <div class="timeline-content">
+                                    <p class="push-bit"><a href="page_ready_user_profile.php"><strong>Ella Winter</strong></a></p>
+                                    <p class="push-bit"><strong>Happy Hour!</strong> Free drinks at <a href="javascript:void(0)">Cafe-Bar</a> all day long!</p>
+                                    <div id="gmap-timeline" class="gmap"></div>
+                                </div>
+                            </li>
+                            <li class="active">
+                                <div class="timeline-icon"><i class="fa fa-cutlery"></i></div>
+                                <div class="timeline-time"><small>yesterday</small></div>
+                                <div class="timeline-content">
+                                    <p class="push-bit"><a href="page_ready_user_profile.php"><strong>Patricia Woods</strong></a></p>
+                                    <p class="push-bit">Today I had the lunch of my life! It was delicious!</p>
+                                    <div class="row push">
+                                        <div class="col-sm-6 col-md-4">
+                                            <a href="img/placeholders/photos/photo23.jpg" data-toggle="lightbox-image">
+                                                <img src="img/placeholders/photos/photo23.jpg" alt="image">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="active">
+                                <div class="timeline-icon themed-background-fire themed-border-fire"><i class="fa fa-smile-o"></i></div>
+                                <div class="timeline-time"><small>2 days ago</small></div>
+                                <div class="timeline-content">
+                                    <p class="push-bit"><a href="page_ready_user_profile.php"><strong>Administrator</strong></a></p>
+                                    To thank you all for your support we would like to let you know that you will receive free feature updates for life! You are awesome!
+                                </div>
+                            </li>
+                            <li class="active">
+                                <div class="timeline-icon"><i class="fa fa-pencil"></i></div>
+                                <div class="timeline-time"><small>1 week ago</small></div>
+                                <div class="timeline-content">
+                                    <p class="push-bit"><a href="page_ready_user_profile.php"><strong>Nicole Ward</strong></a></p>
+                                    <p class="push-bit">Consectetur adipiscing elit. Maecenas ultrices, justo vel imperdiet gravida, urna ligula hendrerit nibh, ac cursus nibh sapien in purus. Mauris tincidunt tincidunt turpis in porta. Integer fermentum tincidunt auctor. Vestibulum ullamcorper, odio sed rhoncus imperdiet, enim elit sollicitudin orci, eget dictum leo mi nec lectus. Nam commodo turpis id lectus scelerisque vulputate.</p>
+                                    Integer sed dolor erat. Fusce erat ipsum, varius vel euismod sed, tristique et lectus? Etiam egestas fringilla enim, id convallis lectus laoreet at. Fusce purus nisi, gravida sed consectetur ut, interdum quis nisi. Quisque egestas nisl id lectus facilisis scelerisque? Proin rhoncus dui at ligula vestibulum ut facilisis ante sodales! Suspendisse potenti. Aliquam tincidunt sollicitudin sem nec ultrices. Sed at mi velit. Ut egestas tempor est, in cursus enim venenatis eget! Nulla quis ligula ipsum.
+                                </div>
+                            </li>
+                            <li class="text-center">
+                                <a href="javascript:void(0)" class="btn btn-xs btn-default">View more..</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- END Timeline Content -->
+                </div>
+            </div>
+            <!-- END Timeline Widget -->
+        </div>
+        <div class="col-md-6">
+            <!-- Your Plan Widget -->
+            <div class="widget">
+                <div class="widget-extra themed-background-dark">
+                    <div class="widget-options">
+                        <div class="btn-group btn-group-xs">
+                            <a href="javascript:void(0)" class="btn btn-default" data-toggle="tooltip" title="Edit Widget"><i class="fa fa-pencil"></i></a>
+                            <a href="javascript:void(0)" class="btn btn-default" data-toggle="tooltip" title="Quick Settings"><i class="fa fa-cog"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="widget-content-light">
+                        Your <strong>VIP Plan</strong>
+                        <small><a href="page_ready_pricing_tables.php"><strong>Upgrade</strong></a></small>
+                    </h3>
+                </div>
+                <div class="widget-extra-full">
+                    <div class="row text-center">
+                        <div class="col-xs-6 col-lg-3">
+                            <h3>
+                                <strong>35</strong> <small>/50</small><br>
+                                <small><i class="fa fa-folder-open-o"></i> Projects</small>
+                            </h3>
+                        </div>
+                        <div class="col-xs-6 col-lg-3">
+                            <h3>
+                                <strong>25</strong> <small>/100GB</small><br>
+                                <small><i class="fa fa-hdd-o"></i> Storage</small>
+                            </h3>
+                        </div>
+                        <div class="col-xs-6 col-lg-3">
+                            <h3>
+                                <strong>65</strong> <small>/1k</small><br>
+                                <small><i class="fa fa-building-o"></i> Clients</small>
+                            </h3>
+                        </div>
+                        <div class="col-xs-6 col-lg-3">
+                            <h3>
+                                <strong>10</strong> <small>k</small><br>
+                                <small><i class="fa fa-envelope-o"></i> Emails</small>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END Your Plan Widget -->
+
+            <!-- Charts Widget -->
+            <div class="widget">
+                <div class="widget-advanced widget-advanced-alt">
+                    <!-- Widget Header -->
+                    <div class="widget-header text-center themed-background">
+                        <h3 class="widget-content-light text-left pull-left animation-pullDown">
+                            <strong>Sales</strong> &amp; <strong>Earnings</strong><br>
+                            <small>Last Year</small>
+                        </h3>
+                        <!-- Flot Charts (initialized in js/pages/index.js), for more examples you can check out http://www.flotcharts.org/ -->
+                        <div id="dash-widget-chart" class="chart"></div>
+                    </div>
+                    <!-- END Widget Header -->
+
+                    <!-- Widget Main -->
+                    <div class="widget-main">
+                        <div class="row text-center">
+                            <div class="col-xs-4">
+                                <h3 class="animation-hatch"><strong>7.500</strong><br><small>Clients</small></h3>
+                            </div>
+                            <div class="col-xs-4">
+                                <h3 class="animation-hatch"><strong>10.970</strong><br><small>Sales</small></h3>
+                            </div>
+                            <div class="col-xs-4">
+                                <h3 class="animation-hatch">$<strong>31.230</strong><br><small>Earnings</small></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END Widget Main -->
+                </div>
+            </div>
+            <!-- END Charts Widget -->
+
+            <!-- Weather Widget -->
+            <div class="widget">
+                <div class="widget-advanced widget-advanced-alt">
+                    <!-- Widget Header -->
+                    <div class="widget-header text-left">
+                        <!-- For best results use an image with at least 150 pixels in height (with the width relative to how big your widget will be!) - Here I'm using a 1200x150 pixels image -->
+                        <img src="img/placeholders/headers/widget5_header.jpg" alt="background" class="widget-background animation-pulseSlow">
+                        <h3 class="widget-content widget-content-image widget-content-light clearfix">
+                            <span class="widget-icon pull-right">
+                                <i class="fa fa-sun-o animation-pulse"></i>
+                            </span>
+                            Weather <strong>Station</strong><br>
+                            <small><i class="fa fa-location-arrow"></i> The Mountain</small>
+                        </h3>
+                    </div>
+                    <!-- END Widget Header -->
+
+                    <!-- Widget Main -->
+                    <div class="widget-main">
+                        <div class="row text-center">
+                            <div class="col-xs-6 col-lg-3">
+                                <h3>
+                                    <strong>10&deg;</strong> <small>C</small><br>
+                                    <small>Sunny</small>
+                                </h3>
+                            </div>
+                            <div class="col-xs-6 col-lg-3">
+                                <h3>
+                                    <strong>80</strong> <small>%</small><br>
+                                    <small>Humidity</small>
+                                </h3>
+                            </div>
+                            <div class="col-xs-6 col-lg-3">
+                                <h3>
+                                    <strong>60</strong> <small>km/h</small><br>
+                                    <small>Wind</small>
+                                </h3>
+                            </div>
+                            <div class="col-xs-6 col-lg-3">
+                                <h3>
+                                    <strong>5</strong> <small>km</small><br>
+                                    <small>Visibility</small>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END Widget Main -->
+                </div>
+            </div>
+            <!-- END Weather Widget-->
+
+            <!-- Advanced Gallery Widget -->
+            <div class="widget">
+                <div class="widget-advanced">
+                    <!-- Widget Header -->
+                    <div class="widget-header text-center themed-background-dark">
+                        <h3 class="widget-content-light clearfix">
+                            Awesome <strong>Gallery</strong><br>
+                            <small>4 Photos</small>
+                        </h3>
+                    </div>
+                    <!-- END Widget Header -->
+
+                    <!-- Widget Main -->
+                    <div class="widget-main">
+                        <a href="page_comp_gallery.php" class="widget-image-container">
+                            <span class="widget-icon themed-background"><i class="gi gi-picture"></i></span>
+                        </a>
+                        <div class="gallery gallery-widget" data-toggle="lightbox-gallery">
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-3">
+                                    <a href="img/placeholders/photos/photo15.jpg" class="gallery-link" title="Image Info">
+                                        <img src="img/placeholders/photos/photo15.jpg" alt="image">
+                                    </a>
+                                </div>
+                                <div class="col-xs-6 col-sm-3">
+                                    <a href="img/placeholders/photos/photo5.jpg" class="gallery-link" title="Image Info">
+                                        <img src="img/placeholders/photos/photo5.jpg" alt="image">
+                                    </a>
+                                </div>
+                                <div class="col-xs-6 col-sm-3">
+                                    <a href="img/placeholders/photos/photo6.jpg" class="gallery-link" title="Image Info">
+                                        <img src="img/placeholders/photos/photo6.jpg" alt="image">
+                                    </a>
+                                </div>
+                                <div class="col-xs-6 col-sm-3">
+                                    <a href="img/placeholders/photos/photo13.jpg" class="gallery-link" title="Image Info">
+                                        <img src="img/placeholders/photos/photo13.jpg" alt="image">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END Widget Main -->
+                </div>
+            </div>
+            <!-- END Advanced Gallery Widget -->
+        </div>
+    </div>
+	<?php */ ?>
+    <!-- END Widgets Row -->
+</div>
+<!-- END Page Content -->
+
+<?php include 'inc/page_footer.php'; ?>
+
+<!-- Remember to include excanvas for IE8 chart support -->
+<!--[if IE 8]><script src="js/helpers/excanvas.min.js"></script><![endif]-->
+
+<?php include 'inc/template_scripts.php'; ?>
+
+<!-- Google Maps API + Gmaps Plugin, must be loaded in the page you would like to use maps (Remove 'http:' if you have SSL) -->
+<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script src="js/helpers/gmaps.min.js"></script>
+
+<!-- Load and execute javascript code used only in this page -->
+<script src="js/pages/index.js"></script>
+<script>$(function(){ Index.init(); });</script>
+
+<?php include 'inc/template_end.php'; ?>

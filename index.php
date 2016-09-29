@@ -28,7 +28,7 @@ $video = $get->get_all_data('video_links', 'id', 'desc');
                     <option value="<?php echo $maker['id']; ?>"><?php echo ucwords(strtolower($maker['name'])); ?></option>
                 <?php } ?>
             </select>
-         
+
             <select id="filter_bodytype" name="bodyType" ><option value="">--Select BodyType--</option>
                 <option value="Sedan">Sedan</option>
                 <option value="Coupe">Coupe</option>
@@ -47,7 +47,7 @@ $video = $get->get_all_data('video_links', 'id', 'desc');
                 <option value="<=500000">Below QR 500,000</option>
                 <option value=">=500000">More than QR 500,000</option>
             </select>
-         
+
             <input type="submit" name="submit" value="Find Car">
         </form>
         <div class="result"></div>
@@ -55,7 +55,7 @@ $video = $get->get_all_data('video_links', 'id', 'desc');
 </div>
 <div class="banner">
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"> 
-      
+
         <div class="carousel-inner" role="listbox">
             <?php
             foreach ($slider as $result)
@@ -66,7 +66,7 @@ $video = $get->get_all_data('video_links', 'id', 'desc');
                         {
                         echo $result['slider_full_path'];
                         }
-                        ?>" alt="" style="height:1024;width:480">
+                    ?>" alt="" style="height:1024;width:480">
                     <div class="carousel-caption"> 
                         <div class="banner-text">
                             <h1>Al Wakalat is the first online showroom</h1>
@@ -99,7 +99,7 @@ $video = $get->get_all_data('video_links', 'id', 'desc');
 </div>
 <div class="searches">
     <div class="container inner-container">
-        <h1>Top 10 <span>Searches</span>
+        <h1>Top  <span>Searches</span>
         </h1>
         <div class="search-products clearfix">
             <?php
@@ -107,9 +107,14 @@ $video = $get->get_all_data('video_links', 'id', 'desc');
                 {
                 ?>
                 <div class="search-main-product">
-                    <div class="search-product-img"> <a href="brand_car.php?id=<?php echo $search['maker_id']; ?>"><img src="<?php echo $search['full_path']; ?>" alt="" title=""></a> </div>
+                    <div class="search-product-img"> <a href="brand_car.php?id=<?php echo $search['maker_id']; ?>">
+                            <img src="http://alwakalat.com/timthumb/timthumb.php?w=117&h=115&src=http://alwakalat.com/<?php echo $search['full_path']; ?>" >
+                            <!--<img src="<?php echo $search['full_path']; ?>" alt="" title="">-->
+                        </a> </div>
                     <div class="search-product-text">
-                        <h2><a href="brand_car.php?id=<?php echo $search['maker_id']; ?>"><?php echo $search['search_name']; ?></a></h2>
+                        <h2><a href="brand_car.php?id=<?php echo $search['maker_id']; ?>">
+                                <?php echo strtoupper($get->get_single_field('maker', 'name', 'id', $search['maker_id'])); ?>
+                                <?php // echo $search['search_name']; ?></a></h2>
                     </div>
                 </div><?php } ?>
 
@@ -127,30 +132,30 @@ $video = $get->get_all_data('video_links', 'id', 'desc');
         foreach ($events as $event)
             {
             ?>  
-                                                            <div class="client-text">
-                                                                <h2><a href="event_detail.php?id=<?php echo $event['id']; ?>"><?php echo $event['event_title']; ?></a></h2>
-                                                            </div>
-                                                            <div class="owl-wrapper1">
-                                                                <div id="owl-demo-<?php echo $event['id']; ?>" class="owl-carousel">
-                                                                    <div>
+                                                                        <div class="client-text">
+                                                                            <h2><a href="event_detail.php?id=<?php echo $event['id']; ?>"><?php echo $event['event_title']; ?></a></h2>
+                                                                        </div>
+                                                                        <div class="owl-wrapper1">
+                                                                            <div id="owl-demo-<?php echo $event['id']; ?>" class="owl-carousel">
+                                                                                <div>
 
-                                                                            <img src="<?php echo $event['thumb']; ?>" alt="" title="">  
-                                                                    </div>
+                                                                                        <img src="<?php echo $event['thumb']; ?>" alt="" title="">  
+                                                                                </div>
             <?php
             $event_images = $get->get_all_event_imgs('event_images', 'id', 'asc', $event['id']);
             foreach ($event_images as $images)
                 {
                 ?>
-                                                                                                                    <div>
-                                                                                                                        <img src="<?php echo $images['thumb_path']; ?>" alt="" title=""> 
-                                                                                                                    </div>
+                                                                                                                                            <div>
+                                                                                                                                                <img src="<?php echo $images['thumb_path']; ?>" alt="" title=""> 
+                                                                                                                                            </div>
             <?php } ?>
-                                                                </div>
-                                                                <div class="customNavigation eventNavs">
-                                                                    <a class="btn prev"><</a>
-                                                                    <a class="btn next">></a>
-                                                                </div>
-                                                            </div>
+                                                                            </div>
+                                                                            <div class="customNavigation eventNavs">
+                                                                                <a class="btn prev"><</a>
+                                                                                <a class="btn next">></a>
+                                                                            </div>
+                                                                        </div>
         <?php } ?>
         </div>-->
     </div>
