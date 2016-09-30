@@ -328,6 +328,8 @@ class model
 
     function add_car_event()
         {
+//        print_r($_POST);
+//        die();
         $slider_name = $this->escape_string($_FILES['slider']['name']);
         $event_title = $this->escape_string($_POST['event_title']);
         $ar_title = $this->escape_string($_POST['ar_title']);
@@ -337,8 +339,8 @@ class model
         $ar_desc = $this->escape_string($_POST['ar_desc']);
         $test_drive = $this->escape_string($_POST['test_drive']);
         $ar_drive = $this->escape_string($_POST['ar_drive']);
-        $start_date = $this->escape_string($_POST['start_date']);
-        $close_date = $this->escape_string($_POST['close_date']);
+        $start_date = $this->escape_string($_POST['event_start_date']);
+        $close_date = $this->escape_string($_POST['event_end_date']);
         $allowed_filetypes = array('jpg', 'gif', 'bmp', 'png');
         $path_parts = pathinfo($slider_name);
         $ext = $path_parts['extension'];
@@ -380,6 +382,8 @@ class model
 
     function edit_car_event()
         {
+//        print_r($_POST);
+//        die();
         $slider_name = $this->escape_string($_FILES['slider']['name']);
         $event_title = $this->escape_string($_POST['event_title']);
         $ar_title = $this->escape_string($_POST['ar_title']);
@@ -389,8 +393,8 @@ class model
         $ar_desc = $this->escape_string($_POST['ar_desc']);
         $test_drive = $this->escape_string($_POST['test_drive']);
         $ar_drive = $this->escape_string($_POST['ar_drive']);
-        $start_date = $this->escape_string($_POST['start_date']);
-        $close_date = $this->escape_string($_POST['close_date']);
+        $start_date = $this->escape_string($_POST['event_start_date']);
+        $close_date = $this->escape_string($_POST['event_end_date']);
         $event_id = $this->escape_string($_POST['event_id']);
         if (!empty($slider_name))
             {
@@ -412,11 +416,11 @@ class model
             move_uploaded_file($_FILES["slider"]["tmp_name"], $slider_path . $slider_name);
             $this->make_thumb('../' . $full_path, '../' . $thumb_path, 150, $ext);
 
-            $update = "UPDATE `events` set image = '" . $slider_name . "', thumb = '" . $thumb_path . "', full_path = '" . $full_path . "', event_title = '" . $event_title . "', title_arabic = '" . $ar_title . "', event_location = '" . $event_location . "', location_arabic = '" . $ar_location . "', event_description = '" . $event_desc . "', desc_arabic = '" . $ar_desc . "', test_drive = '" . $test_drive . "', drive_arabic = '" . $ar_drive . "' where id = '" . $event_id . "'";
+            $update = "UPDATE `events` set image = '" . $slider_name . "', thumb = '" . $thumb_path . "', full_path = '" . $full_path . "', event_title = '" . $event_title . "', title_arabic = '" . $ar_title . "', event_location = '" . $event_location . "', location_arabic = '" . $ar_location . "', event_description = '" . $event_desc . "', desc_arabic = '" . $ar_desc . "', event_start_date = '" . $start_date . "', event_end_date = '" . $close_date . "', test_drive = '" . $test_drive . "', drive_arabic = '" . $ar_drive . "' where id = '" . $event_id . "'";
             }
         else
             {
-            $update = "UPDATE `events` set event_title = '" . $event_title . "', title_arabic = '" . $ar_title . "', event_location = '" . $event_location . "', location_arabic = '" . $ar_location . "', event_description = '" . $event_desc . "', desc_arabic = '" . $ar_desc . "', test_drive = '" . $test_drive . "', drive_arabic = '" . $ar_drive . "' where id = '" . $event_id . "'";
+            $update = "UPDATE `events` set event_title = '" . $event_title . "', title_arabic = '" . $ar_title . "', event_location = '" . $event_location . "', location_arabic = '" . $ar_location . "', event_start_date = '" . $start_date . "', event_end_date = '" . $close_date . "', event_description = '" . $event_desc . "', desc_arabic = '" . $ar_desc . "', test_drive = '" . $test_drive . "', drive_arabic = '" . $ar_drive . "' where id = '" . $event_id . "'";
             }
         $query = $this->Executequery($update);
         if ($query)
@@ -928,7 +932,7 @@ class model
         {
         $slider_name = $this->escape_string($_FILES['slider']['name']);
         $text = $this->escape_string($_POST['text']);
-        $slider_active ='yes';
+        $slider_active = 'yes';
 //        $slider_active = $this->escape_string($_POST['slider_active']);
         $slider_id = $this->escape_string($_POST['slider_id']);
         if ($slider_name != '')
@@ -1370,6 +1374,7 @@ class model
         {
         $slider_name = $this->escape_string($_FILES['slider']['name']);
         $provider = $this->escape_string($_POST['provider']);
+        $desc = $this->escape_string($_POST['desc']);
         $minimum_salary = $this->escape_string($_POST['minimum_salary']);
         $down_payment = $this->escape_string($_POST['down_payment']);
         $monthly_payment = $this->escape_string($_POST['monthly_payment']);
@@ -1391,7 +1396,7 @@ class model
         move_uploaded_file($_FILES["slider"]["tmp_name"], $slider_path . $slider_name);
         $this->make_thumb('../' . $full_path, '../' . $thumb_path, 150, $ext);
 
-        $insert = "INSERT INTO `finance`(`provider`, `minimum_salary`, `down_payment`, `monthly_payment`, `flat_rate`, `reducing_rate`, `image_name`, `thumb_path`, `full_path`, `link`) VALUES ('" . $provider . "', '" . $minimum_salary . "', '" . $down_payment . "', '" . $monthly_payment . "', '" . $flat_rate . "', '" . $reducing_rate . "', '" . $slider_name . "', '" . $thumb_path . "', '" . $full_path . "', '" . $link . "')";
+        $insert = "INSERT INTO `finance`(`provider`,`desc`, `minimum_salary`, `down_payment`, `monthly_payment`, `flat_rate`, `reducing_rate`, `image_name`, `thumb_path`, `full_path`, `link`) VALUES ('" . $provider . "','" . $desc . "', '" . $minimum_salary . "', '" . $down_payment . "', '" . $monthly_payment . "', '" . $flat_rate . "', '" . $reducing_rate . "', '" . $slider_name . "', '" . $thumb_path . "', '" . $full_path . "', '" . $link . "')";
         $query = $this->Executequery($insert);
         if ($query)
             {
@@ -1405,6 +1410,7 @@ class model
         $slider_name = $this->escape_string($_FILES['slider']['name']);
         $id = $this->escape_string($_POST['id']);
         $provider = $this->escape_string($_POST['provider']);
+        $desc = $this->escape_string($_POST['desc']);
         $minimum_salary = $this->escape_string($_POST['minimum_salary']);
         $down_payment = $this->escape_string($_POST['down_payment']);
         $monthly_payment = $this->escape_string($_POST['monthly_payment']);
@@ -1427,12 +1433,12 @@ class model
                 }
             move_uploaded_file($_FILES["slider"]["tmp_name"], $slider_path . $slider_name);
             $this->make_thumb('../' . $full_path, '../' . $thumb_path, 150, $ext);
-            $insert = "UPDATE `finance` SET `provider` = '" . $provider . "', `minimum_salary` = '" . $minimum_salary . "', `down_payment` = '" . $down_payment . "', `monthly_payment` = '" . $monthly_payment . "', `flat_rate` = '" . $flat_rate . "', `reducing_rate` = '" . $reducing_rate . "', `image_name` = '" . $slider_name . "', `thumb_path` = '" . $thumb_path . "', `full_path` = '" . $full_path . "', `link` = '" . $link . "' WHERE id = '" . $id . "'";
+            $insert = "UPDATE `finance` SET `provider` = '" . $provider . "', `desc` = '" . $desc . "', `minimum_salary` = '" . $minimum_salary . "', `down_payment` = '" . $down_payment . "', `monthly_payment` = '" . $monthly_payment . "', `flat_rate` = '" . $flat_rate . "', `reducing_rate` = '" . $reducing_rate . "', `image_name` = '" . $slider_name . "', `thumb_path` = '" . $thumb_path . "', `full_path` = '" . $full_path . "', `link` = '" . $link . "' WHERE id = '" . $id . "'";
             }
         else
             {
             $slider_name1 = $this->escape_string($_POST['slider_name1']);
-            $insert = "UPDATE `finance` SET `provider` = '" . $provider . "', `minimum_salary` = '" . $minimum_salary . "', `down_payment` = '" . $down_payment . "', `monthly_payment` = '" . $monthly_payment . "', `flat_rate` = '" . $flat_rate . "', `reducing_rate` = '" . $reducing_rate . "', `image_name` = '" . $slider_name1 . "', `link` = '" . $link . "' WHERE id = '" . $id . "'";
+            $insert = "UPDATE `finance` SET `provider` = '" . $provider . "',`desc` = '" . $desc . "', `minimum_salary` = '" . $minimum_salary . "', `down_payment` = '" . $down_payment . "', `monthly_payment` = '" . $monthly_payment . "', `flat_rate` = '" . $flat_rate . "', `reducing_rate` = '" . $reducing_rate . "', `image_name` = '" . $slider_name1 . "', `link` = '" . $link . "' WHERE id = '" . $id . "'";
             }
 
         $query = $this->Executequery($insert);

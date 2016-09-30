@@ -2,6 +2,14 @@
 include("includes/header.php");
 //session_start();
 //print_r($_SESSION['whitelist']);
+if (isset($_POST['btn']))
+    {
+    unset($_SESSION['whitelist'][$_POST['btn']]);
+    header("Refresh:0");
+    }
+//echo "<pre>";
+//print_r($_SESSION['whitelist']);
+//echo "</pre>";
 ?>
 <section>
     <div id="wish_list">
@@ -25,9 +33,12 @@ include("includes/header.php");
                         $model = $get->get_single_field('tbl_car_model', 'model_name', 'id', $results['model_id']);
                         $bodyType = $get->get_single_field('tbl_body_type', 'name', 'id', $results['body_type_id']);
 
-//                    echo "<pre>";
-//                    print_r($results);  
-//                    echo "</pre>";
+//                        echo "<pre>";
+//                        print_r($_SESSION['whitelist']);
+//                        echo "</pre>";
+//                        echo "<pre>";
+//                        print_r($key);
+//                        echo "</pre>";
                         ?>
 
                         <div class="col-sm-12 one">
@@ -41,6 +52,7 @@ include("includes/header.php");
                                     <div class="col-sm-8">
                                         <div class="wish_list_content">
                                             <a href="approvedCar.php?id=<?php echo $results['id']; ?>"><h3><?php echo $maker, " ", $model, " ", $sub_model, " ", $bodyType; ?></h3></a>
+                                            <form method="POST" > <button type="submit" name="btn" value="<?php echo $key; ?>" class="btn btn-danger pull-right">Remove</button></form>
                                             <h4>QAR <?php echo number_format($results['price']); ?></h4>
                                             <ul>
                                                 <li class="">

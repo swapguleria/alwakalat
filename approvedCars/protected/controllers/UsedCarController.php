@@ -101,6 +101,7 @@ class UsedCarController extends GxController
                 {
                 $model->warranty_expire_date = "";
                 }
+            $model->expire_date = "3000-09-29";
             if ($model->save())
                 {
                 if (isset($_FILES['UsedCarsImage']))
@@ -272,8 +273,9 @@ class UsedCarController extends GxController
         $model = $this->loadModel($_REQUEST['pk'], 'UsedCar');
 //        print_r($model);
         $model->type_id = User::STATE_INACTIVE;
-        $model->expire_date = $tomorrow = date('y-m-d', time() + 3*86400);;
-        
+        $model->expire_date = $tomorrow = date('y-m-d', time() + 3 * 86400);
+        ;
+
         if ($model->save())
             {
             return array(

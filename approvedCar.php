@@ -147,7 +147,8 @@ $approved_cars = $get->get_all_approved_card();
                         </div>
                         <div class="contact_number dealer-logo">
                             <div class="text-center">
-                                <?php if ($dealer['logo'])
+                                <?php
+                                if ($dealer['logo'])
                                     {
                                     ?>
                                     <img src="http://alwakalat.com/timthumb/timthumb.php?w=180&h=80&src=http://www.alwakalat.com/approvedCars/wdir/uploads/<?php echo $dealer['logo']; ?>"/>
@@ -258,7 +259,7 @@ $approved_cars = $get->get_all_approved_card();
 
                             $send = mail($to, $subject, $message, $headers);
 
-                            if ($send)
+                             if ($send)
                                 {
                                 ?>
                                 <div class="alert alert-success">
@@ -272,7 +273,7 @@ $approved_cars = $get->get_all_approved_card();
                                 ?>   
                                 <div class="alert alert-danger">
                                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                    <strong>Danger!</strong> Error ! to send email.
+                                    <strong>Error ! </strong> email not send .
                                 </div>    
                                 <?php
                                 }
@@ -459,6 +460,7 @@ $approved_cars = $get->get_all_approved_card();
                 data: myData, //Form variables
                 success: function (response) {
 //                    alert(response);
+//                    location.reload();
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     $("#error").html(thrownError);

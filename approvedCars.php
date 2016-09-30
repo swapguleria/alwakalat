@@ -5,6 +5,7 @@ $advertisement = $get->get_all_data('tbl_advertisement', 'id', 'desc');
 $makers = $get->get_all_data('tbl_maker', 'id', 'asc');
 //$bodyType = $get->get_all_data('tbl_body_type', 'id', 'asc');
 $approved_cars = $get->get_all_approved_card();
+//print_r($approved_cars);
 $min = $get->get_price('min');
 $max = $get->get_price('max');
 //
@@ -301,51 +302,56 @@ $bodys = $get->get_all_data('tbl_body_type', 'id', 'asc');
 
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-10 col-sm-offset-1">
-                    <div id="demo">
-                        <div id="owl-demo-two" class="owl-carousel app_slider">
-                            <?php
-                            foreach ($approved_cars as $key => $val)
-                                {
-                                ?>
-                                <div class="item">
-                                    <div class="approved_slider clearfix">
-                                        <div class="col-sm-8">
-                                            <div class="approved_slider_img">
-                                                <?php
-                                                if ($val['banner_image'])
-                                                    {
-                                                    ?>
-                                                    <img src="http://alwakalat.com/approvedCars/wdir/uploads/<?php echo $val['banner_image']; ?>" >
-
+            <?php
+            if (@$approved_cars)
+                {
+                ?>
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <div id="demo">
+                            <div id="owl-demo-two" class="owl-carousel app_slider">
+                                <?php
+                                foreach ($approved_cars as $key => $val)
+                                    {
+                                    ?>
+                                    <div class="item">
+                                        <div class="approved_slider clearfix">
+                                            <div class="col-sm-8">
+                                                <div class="approved_slider_img">
                                                     <?php
-                                                    }
-                                                else
-                                                    {
-                                                    ?><img src="<?php echo $main_url; ?>/approvedCars/themes/basic/images/nocarimage.jpg"/>
+                                                    if ($val['banner_image'])
+                                                        {
+                                                        ?>
+                                                        <img src="http://alwakalat.com/approvedCars/wdir/uploads/<?php echo $val['banner_image']; ?>" >
+
+                                                        <?php
+                                                        }
+                                                    else
+                                                        {
+                                                        ?><img src="<?php echo $main_url; ?>/approvedCars/themes/basic/images/nocarimage.jpg"/>
 
 
-                                                <?php } ?>
+        <?php } ?>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="approved_slider_left text-left">
-                                                <h3><?php echo $get->get_single_field('tbl_maker', 'name', 'id', $val['maker_id']), ' ', $get->get_single_field('tbl_car_model', 'model_name', 'id', $val['model_id']), ' ', $get->get_single_field('tbl_sub_model', 'name', 'id', $val['sub_model_id']); ?></h3>
-                                                <p><?php echo $get->get_single_field('tbl_body_type', 'name', 'id', $val['body_type_id']); ?></p>
-                                                <h4>QAR <?php echo $val['price']; ?></h4>
-                                                <a  href="/approvedCar.php?id=<?php echo $val['id']; ?>" class = "btn btn-default slider_btn">Read more</a>
+                                            <div class="col-sm-4">
+                                                <div class="approved_slider_left text-left">
+                                                    <h3><?php echo $get->get_single_field('tbl_maker', 'name', 'id', $val['maker_id']), ' ', $get->get_single_field('tbl_car_model', 'model_name', 'id', $val['model_id']), ' ', $get->get_single_field('tbl_sub_model', 'name', 'id', $val['sub_model_id']); ?></h3>
+                                                    <p><?php echo $get->get_single_field('tbl_body_type', 'name', 'id', $val['body_type_id']); ?></p>
+                                                    <h4>QAR <?php echo $val['price']; ?></h4>
+                                                    <a  href="/approvedCar.php?id=<?php echo $val['id']; ?>" class = "btn btn-default slider_btn">Read more</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <?php
-                                }
-                            ?>
+                                    <?php
+                                    }
+                                ?>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+<?php } ?>
         </div>
     </div>
 
@@ -376,11 +382,11 @@ $bodys = $get->get_all_data('tbl_body_type', 'id', 'asc');
                                                 ?><img src="<?php echo $main_url; ?>/approvedCars/themes/basic/images/user.jpg"/>
 
 
-                                            <?php } ?>
+    <?php } ?>
                                         </div>
                                         <div class="texti_content">
                                             <p>
-                                                “<?= $value['text'] ?>”
+                                                “<?= $value['text'] ?>�?
                                             </p>
                                             <p>
                                                 - <?= $value['name'] ?>, <?= $value['city'] ?>, <?= $value['state'] ?> -
@@ -388,7 +394,7 @@ $bodys = $get->get_all_data('tbl_body_type', 'id', 'asc');
                                         </div>
                                     </div>
                                 </div>
-                            <?php } ?>
+<?php } ?>
 
                         </div>
                     </div>
